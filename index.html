@@ -861,15 +861,21 @@
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    const { error } = await _supabase.from('signups').insert({
-      first_name: document.getElementById('first-name').value.trim(),
-      last_name:  document.getElementById('last-name').value.trim(),
-      email:      document.getElementById('email').value.trim(),
-      school:     document.getElementById('school').value.trim(),
+    const res = await fetch('https://ojdvfapeqoudqkgqgyqd.supabase.co/functions/v1/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: document.getElementById('first-name').value.trim(),
+        last_name:  document.getElementById('last-name').value.trim(),
+        email:      document.getElementById('email').value.trim(),
+        school:     document.getElementById('school').value.trim(),
+      }),
     });
 
-    if (error) {
-      btn.textContent = error.code === '23505'
+    const data = await res.json();
+
+    if (!res.ok) {
+      btn.textContent = data.error === 'already_signed_up'
         ? 'Already signed up!'
         : 'Something went wrong. Try again.';
       btn.disabled = false;
