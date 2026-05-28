@@ -184,6 +184,27 @@
       nav { gap: 1rem; }
     }
 
+    @media (max-width: 700px) {
+      .site-logo { display: none; }
+      .nav-wrap {
+        padding: 0.75rem 1rem;
+      }
+      nav {
+        width: 100%;
+        max-width: 390px;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.42rem 0.42rem 0.42rem 1rem;
+      }
+      .nav-brand {
+        font-size: 0.9rem;
+      }
+      .nav-cta {
+        font-size: 0.82rem;
+        padding: 0.58rem 1rem;
+      }
+    }
+
     /* ── HERO ────────────────────────────────── */
     .hero {
       min-height: 100vh;
@@ -276,6 +297,50 @@
     }
     .btn-light:hover { background: var(--white); border-color: rgba(7,24,39,0.24); transform: translateY(-2px); }
 
+    @media (max-width: 700px) {
+      .hero {
+        min-height: 88svh;
+        padding: 6.5rem 1.15rem 3.75rem;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(251,251,248,0.92) 0%,
+            rgba(251,251,248,0.82) 30%,
+            rgba(251,251,248,0.62) 62%,
+            rgba(251,251,248,0.42) 100%
+          ),
+          url('hero-art.png') center bottom / cover no-repeat,
+          var(--offwhite);
+      }
+      .hero-inner {
+        max-width: 26rem;
+      }
+      .hero-pill {
+        font-size: 0.68rem;
+        margin-bottom: 1.15rem;
+        padding: 0.34rem 0.85rem;
+      }
+      .hero h1 {
+        font-size: clamp(2.75rem, 14vw, 4.4rem);
+        line-height: 0.98;
+        margin-bottom: 1rem;
+      }
+      .hero-sub {
+        font-size: 0.95rem;
+        line-height: 1.65;
+        margin-bottom: 1.55rem;
+      }
+      .hero-btns {
+        width: min(100%, 18rem);
+        margin-inline: auto;
+        gap: 0.6rem;
+      }
+      .hero-btns button {
+        width: 100%;
+        padding: 0.82rem 1.25rem;
+      }
+    }
+
     /* ── SECTION SHARED ──────────────────────── */
     .section { padding: 7rem 1.5rem; }
     .section-contrast {
@@ -300,6 +365,23 @@
     .body-text {
       font-size: 1rem; color: var(--muted);
       line-height: 1.8; margin-top: 1rem;
+    }
+
+    @media (max-width: 700px) {
+      .section {
+        padding: 4.75rem 1.15rem;
+      }
+      .heading {
+        font-size: clamp(1.9rem, 9vw, 2.45rem);
+        letter-spacing: -0.025em;
+      }
+      .body-text {
+        font-size: 0.95rem;
+        line-height: 1.72;
+      }
+      .overline {
+        font-size: 0.68rem;
+      }
     }
 
     /* ── ABOUT ───────────────────────────────── */
@@ -352,6 +434,31 @@
       object-fit: contain;
     }
 
+    @media (max-width: 700px) {
+      .about-grid {
+        gap: 2rem;
+      }
+      .about-inner .heading {
+        font-size: clamp(2rem, 10vw, 2.7rem);
+      }
+      .about-lead {
+        font-size: 1rem;
+        line-height: 1.72;
+        margin-top: 1.2rem;
+      }
+      .about-body {
+        font-size: 0.92rem;
+        line-height: 1.72;
+      }
+      .about-divider {
+        margin: 1.65rem 0;
+      }
+      .about-photo {
+        border-radius: 14px;
+        aspect-ratio: 1.08;
+      }
+    }
+
     .verse-pull {
       background: var(--black);
       border-radius: 20px;
@@ -399,6 +506,15 @@
     }
     @media (max-width: 860px) { .pillars-grid { grid-template-columns: 1fr; } }
 
+    @media (max-width: 700px) {
+      .pillars-header {
+        margin-bottom: 2.25rem;
+      }
+      .pillars-header .heading br {
+        display: none;
+      }
+    }
+
     .pillar {
       background: rgba(255,255,255,0.74);
       border: 1px solid rgba(7,24,39,0.1);
@@ -431,12 +547,36 @@
       font-size: 0.9rem; color: var(--muted); line-height: 1.75;
     }
 
+    @media (max-width: 700px) {
+      .pillar {
+        padding: 1.75rem 1.45rem;
+      }
+      .pillar-num {
+        font-size: 3.5rem;
+        top: 1rem;
+        right: 1rem;
+      }
+      .pillar h3 {
+        max-width: 13rem;
+      }
+      .pillar p {
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+    }
+
     /* ── ZOOM CARD ────────────────────────────── */
     .zoom-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 5rem; align-items: center;
     }
     @media (max-width: 760px) { .zoom-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    @media (max-width: 700px) {
+      .zoom-grid {
+        gap: 2.1rem;
+      }
+    }
 
     .zoom-card {
       background: var(--white);
@@ -486,6 +626,23 @@
       transition: opacity 0.15s, transform 0.2s;
     }
     .zoom-card-footer button:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    @media (max-width: 700px) {
+      .zoom-card {
+        border-radius: 16px;
+        padding: 0.55rem;
+      }
+      .zoom-card-header {
+        border-radius: 12px;
+        padding: 1.35rem;
+      }
+      .zoom-card-title {
+        font-size: 1.8rem;
+      }
+      .zoom-card-sub {
+        font-size: 0.86rem;
+      }
+    }
 
     .weekly-list {
       list-style: none;
@@ -547,6 +704,15 @@
       line-height: 1.75;
     }
 
+    @media (max-width: 700px) {
+      .faq-header {
+        margin-bottom: 2rem;
+      }
+      .faq-item {
+        padding: 1.35rem;
+      }
+    }
+
     /* ── FINAL CTA ────────────────────────────── */
     .cta-section {
       background: var(--navy);
@@ -581,6 +747,22 @@
       text-transform: uppercase;
     }
 
+    @media (max-width: 700px) {
+      .cta-section {
+        padding: 4.75rem 1.15rem 4rem;
+      }
+      .cta-section .btn-dark {
+        width: min(100%, 18rem);
+        margin-top: 1.9rem;
+      }
+      .cta-note {
+        max-width: 18rem;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+      }
+    }
+
     /* ── FOOTER ───────────────────────────────── */
     footer {
       background: var(--black);
@@ -589,6 +771,15 @@
       text-align: center;
     }
     footer p { font-size: 0.82rem; color: rgba(255,255,255,0.28); line-height: 1.7; }
+
+    @media (max-width: 700px) {
+      footer {
+        padding: 1.25rem 1.15rem;
+      }
+      footer p {
+        font-size: 0.74rem;
+      }
+    }
 
     /* ── MODAL ────────────────────────────────── */
     .modal-overlay {
@@ -695,6 +886,33 @@
     .modal-success p {
       font-size: 0.9rem; color: var(--muted);
       line-height: 1.7; max-width: 300px;
+    }
+
+    @media (max-width: 560px) {
+      .modal-overlay {
+        align-items: flex-end;
+        padding: 0.75rem;
+      }
+      .modal {
+        max-height: calc(100svh - 1.5rem);
+        overflow-y: auto;
+        border-radius: 18px;
+        padding: 2.3rem 1.35rem 1.5rem;
+      }
+      #join-form > div:first-child {
+        grid-template-columns: 1fr !important;
+      }
+      .modal h3 {
+        font-size: 1.35rem;
+      }
+      .modal-sub {
+        font-size: 0.84rem;
+        margin-bottom: 1.35rem;
+      }
+      .field input {
+        font-size: 1rem;
+        padding: 0.78rem 0.9rem;
+      }
     }
   </style>
 </head>
