@@ -50,27 +50,18 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Hero staggered entrance */
-    .hero-pill { animation: fadeUp 0.65s cubic-bezier(0.22,1,0.36,1) 0.15s both; }
-    .hero h1   { animation: fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) 0.30s both; }
-    .hero-sub  { animation: fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) 0.45s both; }
-    .hero-btns { animation: fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) 0.58s both; }
-
     /* Nav entrance */
-    .nav-wrap    { animation: navDrop 0.6s cubic-bezier(0.22,1,0.36,1) 0.05s both; }
-    .site-logo   { animation: navDrop 0.6s cubic-bezier(0.22,1,0.36,1) 0.05s both; }
+    .nav-wrap,
+    .site-logo { animation: none; }
 
     /* Scroll-reveal base state */
     [data-reveal] {
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 0.38s ease,
-                  transform 0.38s ease;
-      will-change: opacity, transform;
+      opacity: 1;
+      transform: none;
     }
     [data-reveal].visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* Stagger children */
@@ -78,13 +69,11 @@
 
     /* Scale-in variant */
     [data-reveal="scale"] {
-      transform: translateY(8px);
-      transition: opacity 0.38s ease,
-                  transform 0.38s ease;
+      transform: none;
     }
     [data-reveal="scale"].visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* ── NAV ─────────────────────────────────── */
