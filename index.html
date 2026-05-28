@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Called Up — Christian Baseball Players on Mission</title>
+  <link rel="icon" type="image/png" href="CUlogo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
@@ -486,6 +487,66 @@
     }
     .zoom-card-footer button:hover { opacity: 0.9; transform: translateY(-1px); }
 
+    .weekly-list {
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1.6rem;
+    }
+    .weekly-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.92rem;
+      color: var(--navy);
+      font-weight: 600;
+    }
+    .weekly-list li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--navy);
+      flex: 0 0 auto;
+    }
+
+    /* ── FAQ ─────────────────────────────────── */
+    .faq-section {
+      background: var(--white);
+    }
+    .faq-header {
+      max-width: 680px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 860px) {
+      .faq-grid { grid-template-columns: 1fr; }
+    }
+    .faq-item {
+      background: var(--offwhite);
+      border: 1px solid rgba(7,24,39,0.1);
+      border-radius: 12px;
+      padding: 1.65rem;
+    }
+    .faq-item h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.7rem;
+    }
+    .faq-item p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
     /* ── FINAL CTA ────────────────────────────── */
     .cta-section {
       background: var(--navy);
@@ -666,7 +727,7 @@
       <button class="btn-dark" onclick="openModal()">Join the Mission</button>
       <button class="btn-light" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn more</button>
     </div>
-    <p class="hero-trust">Get the GroupMe link and next steps by email.</p>
+    <p class="hero-trust">For college baseball players who want to follow Jesus, make disciples, and not do it alone.</p>
   </div>
 </section>
 
@@ -730,6 +791,11 @@
         <h2 class="heading">Are You Making Disciples?</h2>
         <p class="body-text">The weekly call is a starting point for discipleship. We open the Word, learn from faithful leaders and guest speakers, pray for our teams, and talk through what obedience to Jesus looks like right now.</p>
         <p class="body-text" style="margin-top:0.75rem;">The aim is simple: help players grow as disciples, learn to lead a Discovery Bible Study, and carry the gospel into their own teams with humility and courage.</p>
+        <ul class="weekly-list">
+          <li>Scripture and prayer with other players</li>
+          <li>Honest conversation about faith and baseball</li>
+          <li>Practical training to disciple teammates</li>
+        </ul>
       </div>
       <div data-reveal style="transition-delay:0.15s">
         <div class="zoom-card">
@@ -746,6 +812,31 @@
   </div>
 </section>
 
+<!-- ── FAQ ── -->
+<section class="section faq-section" id="faq">
+  <div class="section-inner">
+    <div class="faq-header" data-reveal>
+      <span class="overline" style="display:block;text-align:center;">Common Questions</span>
+      <h2 class="heading" style="text-align:center;">Simple Next Steps.</h2>
+    </div>
+
+    <div class="faq-grid" data-stagger>
+      <div class="faq-item" data-reveal>
+        <h3>Who can join?</h3>
+        <p>Any college baseball player who wants to follow Jesus, grow with other believers, and learn to make disciples on his team.</p>
+      </div>
+      <div class="faq-item" data-reveal>
+        <h3>What happens after I sign up?</h3>
+        <p>You'll get a welcome email with the GroupMe link. The call link and next steps will be shared there.</p>
+      </div>
+      <div class="faq-item" data-reveal>
+        <h3>Do I need to attend every call?</h3>
+        <p>No. Show up as consistently as you can. The goal is steady discipleship that fits the rhythm of a baseball season.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── FINAL CTA ── -->
 <section class="cta-section">
   <div class="section-inner" data-reveal>
@@ -755,7 +846,7 @@
     <p class="body-text" style="text-align:center;">Enter your email and we'll send you the next step. Come be discipled, get connected, and learn how to help your teammates discover and follow Jesus.</p>
     <div style="text-align:center;">
       <button class="btn-dark" onclick="openModal()">Join Called Up</button>
-      <p class="cta-note">No spam. Just the call link, community updates, and ways to grow.</p>
+      <p class="cta-note">The GroupMe link, call details, and next steps will be sent to your inbox.</p>
     </div>
   </div>
 </section>
@@ -796,7 +887,7 @@
         </div>
         <button type="submit" class="modal-submit" id="submit-btn">Send Me the Next Step</button>
       </form>
-      <p class="modal-legal">No spam. Unsubscribe anytime.</p>
+      <p class="modal-legal">You'll receive the GroupMe link and call details by email.</p>
     </div>
 
     <div class="modal-success" id="modal-success">
