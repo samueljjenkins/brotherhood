@@ -97,8 +97,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 148px;
-      height: 148px;
+      width: 118px;
+      height: 118px;
       pointer-events: all;
       transition: opacity 0.22s, transform 0.22s;
     }
@@ -176,8 +176,8 @@
       .site-logo {
         top: 0.85rem;
         left: 1rem;
-        width: 92px;
-        height: 92px;
+        width: 72px;
+        height: 72px;
       }
       .nav-links { display: none; }
       nav { gap: 1rem; }
@@ -186,7 +186,10 @@
     /* ── HERO ────────────────────────────────── */
     .hero {
       min-height: 100vh;
-      background: var(--offwhite);
+      background:
+        linear-gradient(180deg, rgba(251,251,248,0.96) 0%, rgba(251,251,248,0.9) 45%, rgba(251,251,248,0.76) 100%),
+        url('hero.png') center bottom / cover no-repeat,
+        var(--offwhite);
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
@@ -233,6 +236,13 @@
       display: flex; align-items: center; justify-content: center;
       gap: 0.75rem; flex-wrap: wrap;
       margin-bottom: 0;
+    }
+
+    .hero-trust {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      font-weight: 500;
     }
 
     .btn-dark {
@@ -385,7 +395,7 @@
     .pillar {
       background: rgba(255,255,255,0.74);
       border: 1px solid rgba(7,24,39,0.1);
-      border-radius: 20px;
+      border-radius: 12px;
       padding: 2.5rem 2.25rem;
       transition: background 0.3s, border-color 0.3s, transform 0.3s;
       cursor: default;
@@ -409,6 +419,20 @@
       font-size: 1.15rem; font-weight: 700;
       color: var(--navy); margin-bottom: 0.75rem;
       letter-spacing: -0.02em;
+    }
+    .pillar h3::before {
+      content: 'Field Note';
+      display: block;
+      width: fit-content;
+      border: 1px solid rgba(7,24,39,0.12);
+      border-radius: 100px;
+      padding: 0.25rem 0.65rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     }
     .pillar p {
       font-size: 0.9rem; color: var(--muted); line-height: 1.75;
@@ -489,6 +513,20 @@
       opacity: 0.9;
     }
     .cta-note { margin-top: 1.1rem; font-size: 0.78rem; color: rgba(255,255,255,0.36); }
+
+    .cta-verse {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 1.25rem;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 100px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.58);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
 
     /* ── FOOTER ───────────────────────────────── */
     footer {
@@ -636,6 +674,7 @@
       <button class="btn-dark" onclick="openModal()">Join the Mission</button>
       <button class="btn-light" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn more</button>
     </div>
+    <p class="hero-trust">Get the GroupMe link and next steps by email.</p>
   </div>
 </section>
 
@@ -718,6 +757,7 @@
 <!-- ── FINAL CTA ── -->
 <section class="cta-section">
   <div class="section-inner" data-reveal>
+    <span class="cta-verse">Ephesians 4:1</span>
     <span class="overline" style="display:block;text-align:center;">Ready to Live Worthy</span>
     <h2 class="heading" style="text-align:center;">Your Team Is a Mission Field.</h2>
     <p class="body-text" style="text-align:center;">Enter your email and we'll send you the next step. Come be discipled, get connected, and learn how to help your teammates discover and follow Jesus.</p>
@@ -741,7 +781,7 @@
     <div id="modal-form-wrap">
       <p class="modal-eyebrow">Called Up</p>
       <h3>Join the Mission</h3>
-      <p class="modal-sub">Drop your email and we'll send you the next step. Get connected with Christian baseball players who want to be discipled and make disciples.</p>
+      <p class="modal-sub">Drop your email and we'll send the GroupMe link, call details, and next steps for getting connected.</p>
 
       <form id="join-form" onsubmit="handleSubmit(event)">
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
