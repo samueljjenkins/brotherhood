@@ -12,10 +12,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:   #020b14;
-      --navy:    #020b14;
+      --black:   #000000;
+      --navy:    #000000;
       --offwhite:#fbfbf8;
-      --text:    #020b14;
+      --text:    #000000;
       --muted:   #657083;
       --light:   #9aa6b8;
       --border:  rgba(7, 24, 39, 0.1);
@@ -130,7 +130,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: brightness(0) saturate(100%) invert(8%) sepia(31%) saturate(1192%) hue-rotate(166deg) brightness(92%) contrast(96%);
+      filter: brightness(0);
     }
 
     .nav-menu-toggle {
@@ -458,7 +458,6 @@
 
     .about-caption {
       padding-top: 1rem;
-      border-top: 1px solid rgba(7,24,39,0.12);
       margin-top: 1rem;
       font-size: 0.86rem;
       color: var(--muted);
