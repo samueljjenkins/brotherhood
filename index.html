@@ -223,16 +223,13 @@
     .hero-inner {
       position: relative;
       z-index: 1;
-      width: min(100%, 1160px);
+      width: min(100%, 900px);
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1fr);
-      gap: clamp(2rem, 5vw, 4rem);
-      align-items: center;
+      text-align: center;
     }
 
     .hero-copy {
-      max-width: 560px;
+      max-width: 700px;
       min-width: 0;
       background: rgba(251,251,248,0.92);
       border: 1px solid rgba(7,24,39,0.1);
@@ -255,12 +252,12 @@
       color: var(--muted);
       line-height: 1.75;
       max-width: 520px;
-      margin: 0 0 2.25rem;
+      margin: 0 auto 2.25rem;
       font-weight: 400;
     }
 
     .hero-btns {
-      display: flex; align-items: center;
+      display: flex; align-items: center; justify-content: center;
       gap: 0.75rem; flex-wrap: wrap;
       margin-bottom: 0;
     }
@@ -303,7 +300,6 @@
         background-position: center;
       }
       .hero-inner {
-        grid-template-columns: 1fr;
         max-width: 30rem;
       }
       .hero-copy {
@@ -419,75 +415,26 @@
       border-radius: 2px;
     }
 
-    .about-panel {
-      background: var(--white);
-      border: 1px solid rgba(7,24,39,0.1);
+    .about-photo {
+      overflow: hidden;
       border-radius: 18px;
-      padding: clamp(1.5rem, 3vw, 2.25rem);
+      background: var(--white);
+      aspect-ratio: 1.18;
     }
 
-    .about-panel-top {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1.5rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid rgba(7,24,39,0.1);
-      margin-bottom: 1.25rem;
+    .about-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
-    .about-panel-kicker {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .about-panel-ref {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--navy);
-      white-space: nowrap;
-    }
-
-    .about-panel h3 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(1.55rem, 3vw, 2.2rem);
-      font-weight: 850;
-      color: var(--navy);
-      line-height: 1.1;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.25rem;
-    }
-
-    .about-points {
-      display: grid;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .about-point {
-      display: grid;
-      grid-template-columns: 2.4rem 1fr;
-      gap: 1rem;
-      align-items: start;
+    .about-caption {
       padding-top: 1rem;
-      border-top: 1px solid rgba(7,24,39,0.08);
-    }
-
-    .about-point span {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: 0.08em;
-    }
-
-    .about-point p {
-      font-size: 0.92rem;
+      border-top: 1px solid rgba(7,24,39,0.12);
+      margin-top: 1rem;
+      font-size: 0.86rem;
       color: var(--muted);
       line-height: 1.65;
     }
@@ -511,17 +458,9 @@
       .about-divider {
         margin: 1.65rem 0;
       }
-      .about-panel {
+      .about-photo {
         border-radius: 14px;
-      }
-      .about-panel-top {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 0.4rem;
-      }
-      .about-point {
-        grid-template-columns: 1fr;
-        gap: 0.35rem;
+        aspect-ratio: 1.08;
       }
     }
 
@@ -1031,27 +970,12 @@
           <p class="about-body" style="margin-top:0.85rem;">The goal is not just community for community's sake. The goal is to see the gospel go forth into locker rooms, organizations, local churches, and the nations.</p>
         </div>
       </div>
-      <aside class="about-panel" data-reveal style="transition-delay:0.18s">
-        <div class="about-panel-top">
-          <span class="about-panel-kicker">The Burden</span>
-          <span class="about-panel-ref">Ephesians 4:1</span>
-        </div>
-        <h3>Players should not have to chase Jesus alone.</h3>
-        <div class="about-points">
-          <div class="about-point">
-            <span>01</span>
-            <p>A place to talk honestly about faith, pressure, purpose, and the daily grind of college baseball.</p>
-          </div>
-          <div class="about-point">
-            <span>02</span>
-            <p>A rhythm of Scripture, prayer, and practical obedience that players can carry back to their teams.</p>
-          </div>
-          <div class="about-point">
-            <span>03</span>
-            <p>A brotherhood built to send men into locker rooms with humility, courage, and the gospel.</p>
-          </div>
-        </div>
-      </aside>
+      <div data-reveal style="transition-delay:0.18s">
+        <figure class="about-photo">
+          <img src="about-photo.jpeg" alt="Called Up baseball players gathered together" />
+        </figure>
+        <p class="about-caption">Players should not have to chase Jesus alone. Called Up creates a steady place to grow and be sent.</p>
+      </div>
     </div>
   </div>
 </section>
