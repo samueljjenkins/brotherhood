@@ -103,6 +103,18 @@
       border-color: transparent;
     }
 
+    .nav-wordmark {
+      grid-column: 1;
+      justify-self: start;
+      font-family: 'Stolzl Medium', 'Stolzl', 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
     .nav-logo {
       grid-column: 2;
       display: inline-flex;
@@ -131,11 +143,16 @@
       flex-direction: column;
       justify-content: center;
       gap: 5px;
-      background: var(--white);
-      border: 1px solid rgba(7,24,39,0.16);
-      border-radius: 0;
+      background: var(--offwhite);
+      border: 1px solid rgba(7,24,39,0.14);
+      border-radius: 12px;
       cursor: pointer;
       padding: 0 11px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .nav-menu-toggle:hover {
+      background: var(--white);
+      border-color: rgba(7,24,39,0.22);
     }
 
     .nav-menu-toggle span {
@@ -166,7 +183,8 @@
       align-items: stretch;
       background: var(--white);
       border: 1px solid rgba(7,24,39,0.12);
-      padding: 0.45rem;
+      border-radius: 14px;
+      padding: 0.55rem;
     }
     nav.menu-open .nav-links { display: flex; }
 
@@ -175,24 +193,10 @@
       font-size: 0.875rem; font-weight: 500;
       color: var(--muted); text-decoration: none;
       padding: 0.85rem 1rem;
-      border-radius: 0;
+      border-radius: 10px;
       transition: color 0.15s, background 0.15s;
     }
     .nav-links a:hover { color: var(--navy); background: rgba(7,24,39,0.06); }
-
-    .nav-cta {
-      grid-column: 1;
-      justify-self: start;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.875rem; font-weight: 700;
-      color: var(--white); background: var(--navy);
-      border: none; border-radius: 0;
-      padding: 0.6rem 1.3rem;
-      cursor: pointer; letter-spacing: -0.01em;
-      transition: opacity 0.15s, transform 0.2s;
-      white-space: nowrap;
-    }
-    .nav-cta:hover { opacity: 0.8; }
 
     @media (max-width: 560px) {
       nav {
@@ -200,9 +204,9 @@
         padding: 0 1rem;
       }
       .nav-logo { width: 62px; height: 62px; }
-      .nav-cta {
-        font-size: 0.82rem;
-        padding: 0.58rem 0.85rem;
+      .nav-wordmark {
+        font-size: 0;
+        width: 44px;
       }
       .nav-links { right: 1rem; }
     }
@@ -293,7 +297,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.95rem; font-weight: 700;
       color: var(--white); background: var(--navy);
-      border: none; border-radius: 0;
+      border: none; border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
       transition: opacity 0.15s, transform 0.2s;
@@ -306,7 +310,7 @@
       color: var(--text);
       background: rgba(255,255,255,0.86);
       border: 1px solid rgba(7,24,39,0.16);
-      border-radius: 0;
+      border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
       transition: background 0.15s, border-color 0.15s, transform 0.2s;
@@ -636,7 +640,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.88rem; font-weight: 700;
       color: var(--white); background: var(--navy);
-      border: none; border-radius: 0;
+      border: none; border-radius: 12px;
       padding: 0.85rem 1.4rem; cursor: pointer;
       width: 100%;
       transition: opacity 0.15s, transform 0.2s;
@@ -824,7 +828,7 @@
       position: absolute; top: 1rem; right: 1.2rem;
       width: 28px; height: 28px;
       background: var(--surface); border: none;
-      border-radius: 0; cursor: pointer;
+      border-radius: 6px; cursor: pointer;
       color: var(--muted); font-size: 1rem;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.15s, color 0.15s;
@@ -871,7 +875,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.95rem; font-weight: 700;
       color: var(--white); background: var(--navy);
-      border: none; border-radius: 0;
+      border: none; border-radius: 10px;
       padding: 0.85rem; cursor: pointer;
       margin-top: 0.25rem;
       transition: opacity 0.15s, transform 0.2s;
@@ -936,7 +940,7 @@
 
 <div class="nav-wrap">
   <nav id="main-nav">
-    <button class="nav-cta" onclick="openModal()">Join Now</button>
+    <a href="#" class="nav-wordmark">Called Up</a>
     <a href="#" class="nav-logo" aria-label="Called Up home">
       <img src="CUlogo.png" alt="Called Up logo" />
     </a>
