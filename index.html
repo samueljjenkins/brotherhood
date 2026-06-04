@@ -196,34 +196,14 @@
       text-align: center;
     }
 
-    .hero-subhead {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(1.05rem, 2vw, 1.25rem);
-      font-weight: 600;
-      color: rgba(255,255,255,0.96);
-      line-height: 1.55;
-      margin-bottom: 1rem;
-      text-shadow: 0 1px 12px rgba(0,0,0,0.35);
-    }
-
     .hero-sub {
       font-size: clamp(0.95rem, 1.7vw, 1.05rem);
       color: rgba(255,255,255,0.8);
       line-height: 1.75;
       max-width: 520px;
-      margin: 0 auto 1.1rem;
+      margin: 0 auto 2rem;
       font-weight: 400;
       text-shadow: 0 1px 18px rgba(0,0,0,0.28);
-    }
-
-    .hero-scripture {
-      font-size: 0.78rem;
-      font-style: italic;
-      color: rgba(255,255,255,0.45);
-      font-weight: 400;
-      margin-bottom: 2.25rem;
-      letter-spacing: 0.01em;
-      line-height: 1.6;
     }
 
     .hero-btns {
@@ -268,20 +248,19 @@
 
     @media (max-width: 920px) {
       .hero {
-        min-height: calc(100svh - 68px);
+        min-height: calc(100svh - 76px);
         padding: 3.75rem 1.5rem;
-        margin-top: 68px;
         background-position: center;
       }
       .hero-inner { max-width: 30rem; }
       .hero-copy { text-align: center; max-width: none; }
       .hero h1 {
-        font-size: clamp(2.75rem, 14vw, 4.4rem);
-        line-height: 0.98; margin-bottom: 1rem;
+        font-size: clamp(2.75rem, 12vw, 4.4rem);
+        line-height: 1; margin-bottom: 1rem;
       }
       .hero-sub {
         font-size: 0.9rem; line-height: 1.65;
-        margin-left: auto; margin-right: auto; margin-bottom: 1rem;
+        margin-left: auto; margin-right: auto; margin-bottom: 1.75rem;
       }
       .hero-btns {
         width: min(100%, 18rem); margin-inline: auto; gap: 0.6rem;
@@ -289,8 +268,14 @@
       .hero-btns button { width: 100%; padding: 0.82rem 1.25rem; }
     }
 
-    @media (max-width: 700px) {
-      .hero { padding: 6.5rem 1.15rem 4.5rem; }
+    @media (max-width: 560px) {
+      .hero {
+        min-height: calc(100svh - 68px);
+        margin-top: 68px;
+        padding: 5rem 1.15rem 4rem;
+      }
+      .hero h1 { font-size: clamp(2.4rem, 11vw, 3.2rem); }
+      .hero h1 span[style*="white-space:nowrap"] { white-space: normal !important; }
     }
 
     /* ── SECTION SHARED ──────────────────────── */
@@ -408,32 +393,6 @@
       .pillar p { font-size: 0.9rem; line-height: 1.72; }
     }
 
-    /* ── VISION SECTION ────────────────────────── */
-    .vision-section {
-      background: var(--black);
-      padding: 9rem 1.5rem;
-    }
-    .vision-inner {
-      max-width: 720px; margin: 0 auto; text-align: center;
-    }
-    .vision-inner .overline { color: rgba(255,255,255,0.38); }
-    .vision-inner .heading {
-      color: var(--white);
-      font-size: clamp(2.4rem, 4.5vw, 3.5rem);
-      margin-top: 0.25rem; margin-bottom: 1.85rem;
-    }
-    .vision-body {
-      font-size: clamp(1rem, 1.8vw, 1.15rem);
-      color: rgba(255,255,255,0.62);
-      line-height: 1.88; max-width: 600px; margin: 0 auto;
-    }
-
-    @media (max-width: 700px) {
-      .vision-section { padding: 5.5rem 1.15rem; }
-      .vision-inner .heading { font-size: clamp(2rem, 10vw, 2.75rem); }
-      .vision-body { font-size: 0.97rem; }
-    }
-
     /* ── ZOOM CARD ────────────────────────────── */
     .zoom-grid {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -480,12 +439,8 @@
     }
     .zoom-card-footer button:hover { opacity: 0.9; }
 
-    .zoom-card-hint {
-      font-size: 0.8rem; color: var(--light);
-      font-style: italic; margin-bottom: 0.7rem; line-height: 1.5;
-    }
 
-    @media (max-width: 700px) {
+@media (max-width: 700px) {
       .zoom-card { border-radius: 16px; padding: 0.55rem; }
       .zoom-card-header { border-radius: 12px; padding: 1.35rem; }
       .zoom-card-title { font-size: 1.8rem; }
@@ -511,16 +466,11 @@
       border-top: 1px solid rgba(255,255,255,0.07);
       padding: 2.5rem 2rem; text-align: center;
     }
-    .footer-tagline {
-      font-size: 0.78rem; color: rgba(255,255,255,0.35);
-      margin-bottom: 0.5rem; font-weight: 400; letter-spacing: 0.01em;
-    }
     footer p { font-size: 0.82rem; color: rgba(255,255,255,0.28); line-height: 1.7; }
 
     @media (max-width: 700px) {
       footer { padding: 2rem 1.15rem; }
       footer p { font-size: 0.74rem; }
-      .footer-tagline { font-size: 0.72rem; }
     }
 
     /* ── MODAL ────────────────────────────────── */
