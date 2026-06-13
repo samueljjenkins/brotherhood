@@ -75,7 +75,7 @@
     }
 
     nav {
-      width: 100%; min-height: 120px; padding: 0 2.25rem;
+      width: 100%; min-height: 240px; padding: 0 2.25rem;
       display: grid; grid-template-columns: 1fr auto 1fr;
       align-items: center; position: relative;
     }
@@ -86,7 +86,7 @@
       display: inline-flex; align-items: center; text-decoration: none;
     }
     .nav-logo-script img {
-      display: block; height: 110px; width: auto;
+      display: block; height: 220px; width: auto;
       object-fit: contain;
     }
 
@@ -143,19 +143,19 @@
     .nav-links a:hover { color: var(--navy); background: rgba(7,24,39,0.06); }
 
     @media (max-width: 560px) {
-      nav { min-height: 90px; padding: 0 1rem; }
-      .nav-logo-script img { height: 80px; }
+      nav { min-height: 160px; padding: 0 1rem; }
+      .nav-logo-script img { height: 140px; }
       .nav-links { right: 1rem; }
       .nav-cta { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
     }
 
     /* ── HERO ────────────────────────────────── */
     .hero {
-      min-height: calc(100svh - 120px);
+      min-height: calc(100svh - 240px);
       background: url('MCC.jpg') center 54% / cover no-repeat, var(--offwhite);
       display: flex; align-items: center; justify-content: center;
       padding: 5rem 2.25rem;
-      margin-top: 120px;
+      margin-top: 240px;
       position: relative; overflow: hidden;
     }
 
@@ -239,7 +239,7 @@
 
     @media (max-width: 920px) {
       .hero {
-        min-height: calc(100svh - 120px);
+        min-height: calc(100svh - 240px);
         padding: 3.75rem 1.5rem;
         background-position: center;
       }
@@ -261,8 +261,8 @@
 
     @media (max-width: 560px) {
       .hero {
-        min-height: calc(100svh - 90px);
-        margin-top: 90px;
+        min-height: calc(100svh - 160px);
+        margin-top: 160px;
         padding: 5rem 1.25rem 4rem;
       }
       .hero-copy { max-width: 100%; }
