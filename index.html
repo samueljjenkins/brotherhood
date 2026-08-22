@@ -190,9 +190,13 @@
       border: none; border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
-      transition: opacity 0.15s, transform 0.2s;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease, opacity 0.15s;
     }
-    .btn-dark:hover { opacity: 0.9; }
+    .btn-dark:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(18,33,63,0.28);
+    }
+    .btn-dark:active { transform: translateY(-1px) scale(0.97); }
 
     .btn-light {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -203,9 +207,15 @@
       border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
-      transition: background 0.15s, opacity 0.15s, transform 0.2s;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease, background 0.15s;
     }
-    .btn-light:hover { opacity: 0.7; }
+    .btn-light:hover {
+      transform: translateY(-3px);
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(18,33,63,0.18);
+    }
+    .btn-light:active { transform: translateY(-1px) scale(0.97); }
 
     @media (max-width: 920px) {
       .hero { padding: 9rem 1.5rem 4.5rem; }
@@ -338,9 +348,10 @@
       width: 34px; height: 34px; border-radius: 50%;
       background: rgba(255,255,255,0.92); border: none;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: opacity 0.15s;
+      cursor: pointer; transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), opacity 0.15s;
     }
-    .films-mute-toggle:hover { opacity: 0.8; }
+    .films-mute-toggle:hover { opacity: 0.85; transform: scale(1.12); }
+    .films-mute-toggle:active { transform: scale(0.95); }
     .films-mute-toggle svg { display: block; }
     .films-mute-toggle .icon-unmuted { display: none; }
     .films-mute-toggle.is-unmuted .icon-muted { display: none; }
@@ -363,14 +374,21 @@
       border-radius: 999px; padding: 0.4rem 0.4rem 0.4rem 1.75rem;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1rem; font-weight: 700; color: var(--navy);
-      cursor: pointer; transition: opacity 0.15s;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
     }
-    .cta-pill:hover { opacity: 0.75; }
+    .cta-pill:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(18,33,63,0.18);
+    }
+    .cta-pill:active { transform: translateY(-1px) scale(0.97); }
     .cta-pill-icon {
       width: 46px; height: 46px; border-radius: 50%;
       background: var(--navy); flex: 0 0 auto;
       display: flex; align-items: center; justify-content: center;
+      transition: transform 0.25s ease;
     }
+    .cta-pill:hover .cta-pill-icon { transform: translateX(4px) rotate(-18deg); }
 
     @media (max-width: 700px) {
       .learn-more-row { gap: 1.5rem; }
@@ -394,9 +412,10 @@
     .footer-social a {
       display: flex; align-items: center; justify-content: center;
       color: var(--navy);
-      transition: opacity 0.15s;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), opacity 0.15s;
     }
-    .footer-social a:hover { opacity: 0.7; }
+    .footer-social a:hover { opacity: 0.75; transform: translateY(-3px) scale(1.08); }
+    .footer-social a:active { transform: translateY(0) scale(0.95); }
 
     @media (max-width: 700px) {
       footer { padding: 2rem 1.5rem; }
@@ -468,9 +487,14 @@
       font-size: 0.95rem; font-weight: 700;
       color: var(--white); background: var(--navy);
       border: none; border-radius: 10px; padding: 0.85rem; cursor: pointer;
-      margin-top: 0.25rem; transition: opacity 0.15s, transform 0.2s;
+      margin-top: 0.25rem;
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease, opacity 0.15s;
     }
-    .modal-submit:hover { opacity: 0.82; }
+    .modal-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(18,33,63,0.28);
+    }
+    .modal-submit:active:not(:disabled) { transform: translateY(0) scale(0.97); }
     .modal-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
     .modal-legal {
