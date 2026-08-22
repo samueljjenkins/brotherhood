@@ -107,8 +107,6 @@
     }
     .nav-menu-toggle:hover { opacity: 0.65; transform: scale(1.08); }
     .nav-menu-toggle:active { transform: scale(0.92); }
-    .nav-menu-toggle:hover span:nth-child(2) { transform: translateX(3px); }
-    .nav-menu-toggle:hover span:nth-child(4) { transform: translateX(-3px); }
     .home-plate-outline {
       position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
     }
@@ -398,7 +396,7 @@
       display: flex; align-items: center; justify-content: center;
       transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
     }
-    .cta-pill:hover .cta-pill-icon { transform: translateX(4px) rotate(-14deg) scale(1.06); }
+    .cta-pill:hover .cta-pill-icon { transform: translateX(4px) scale(1.06); }
 
     @media (max-width: 700px) {
       .learn-more-row { gap: 1.5rem; }
