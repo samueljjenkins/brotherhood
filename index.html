@@ -15,7 +15,7 @@
       --black:   #000000;
       --navy:    #12213f;
       --accent:  #86ade0;
-      --offwhite:#fbfbf8;
+      --offwhite:#ffffff;
       --text:    #12213f;
       --muted:   #657083;
       --light:   #9aa6b8;
@@ -153,7 +153,8 @@
     .hero-art {
       position: absolute; left: 0; right: 0; bottom: 0;
       width: 100%;
-      opacity: 0.45;
+      opacity: 0.6;
+      mix-blend-mode: multiply;
       pointer-events: none; z-index: 0;
     }
 
@@ -232,7 +233,7 @@
 
     /* ── SECTION SHARED ──────────────────────── */
     .section { padding: 8rem 1.5rem; }
-    .section-contrast { background: var(--surface); }
+    .section-contrast { background: var(--offwhite); }
     .section-inner { max-width: 1080px; margin: 0 auto; }
 
     .overline {
@@ -325,6 +326,7 @@
     .films-video {
       position: relative;
       width: min(420px, 100%);
+      margin: 0 auto;
       aspect-ratio: 16 / 10;
       border-radius: 20px;
       overflow: hidden;
