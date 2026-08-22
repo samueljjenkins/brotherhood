@@ -186,19 +186,6 @@
       gap: 0.75rem; flex-wrap: wrap;
     }
 
-    .btn-dark, .btn-light {
-      position: relative; overflow: hidden; isolation: isolate;
-    }
-    .btn-dark::after, .btn-light::after {
-      content: ''; position: absolute; top: 0; left: -75%;
-      width: 45%; height: 100%;
-      background: linear-gradient(115deg, transparent, rgba(255,255,255,0.55), transparent);
-      transform: skewX(-18deg);
-      transition: left 0.7s cubic-bezier(0.16,1,0.3,1);
-      pointer-events: none; z-index: 1;
-    }
-    .btn-dark:hover::after, .btn-light:hover::after { left: 135%; }
-
     .btn-dark {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.95rem; font-weight: 700;
@@ -206,14 +193,14 @@
       border: none; border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
-      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
     }
     .btn-dark:hover {
-      transform: translateY(-3px) scale(1.015);
+      transform: scale(1.08);
       box-shadow: 0 14px 28px -8px rgba(18,33,63,0.4), 0 4px 10px -2px rgba(18,33,63,0.22);
     }
     .btn-dark:active {
-      transform: translateY(-1px) scale(0.97);
+      transform: scale(1.02);
       transition-duration: 0.12s;
     }
 
@@ -226,16 +213,14 @@
       border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
-      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1), background 0.35s ease, color 0.35s ease;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
     }
     .btn-light:hover {
-      transform: translateY(-3px) scale(1.015);
-      background: var(--navy);
-      color: var(--white);
-      box-shadow: 0 14px 28px -8px rgba(18,33,63,0.3), 0 4px 10px -2px rgba(18,33,63,0.16);
+      transform: scale(1.08);
+      box-shadow: 0 14px 28px -8px rgba(18,33,63,0.22), 0 4px 10px -2px rgba(18,33,63,0.12);
     }
     .btn-light:active {
-      transform: translateY(-1px) scale(0.97);
+      transform: scale(1.02);
       transition-duration: 0.12s;
     }
 
@@ -390,30 +375,21 @@
     }
 
     .cta-pill {
-      position: relative; overflow: hidden; isolation: isolate;
+      position: relative;
       display: inline-flex; align-items: center; gap: 1.5rem;
       background: var(--white); border: 1.5px solid var(--navy);
       border-radius: 999px; padding: 0.4rem 0.4rem 0.4rem 1.75rem;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1rem; font-weight: 700; color: var(--navy);
       cursor: pointer;
-      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1), box-shadow 0.45s cubic-bezier(0.16,1,0.3,1);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
     }
-    .cta-pill::after {
-      content: ''; position: absolute; top: 0; left: -75%;
-      width: 45%; height: 100%;
-      background: linear-gradient(115deg, transparent, rgba(18,33,63,0.08), transparent);
-      transform: skewX(-18deg);
-      transition: left 0.7s cubic-bezier(0.16,1,0.3,1);
-      pointer-events: none; z-index: 1;
-    }
-    .cta-pill:hover::after { left: 135%; }
     .cta-pill:hover {
-      transform: translateY(-3px) scale(1.015);
+      transform: scale(1.06);
       box-shadow: 0 14px 28px -8px rgba(18,33,63,0.28), 0 4px 10px -2px rgba(18,33,63,0.14);
     }
     .cta-pill:active {
-      transform: translateY(-1px) scale(0.97);
+      transform: scale(1.01);
       transition-duration: 0.12s;
     }
     .cta-pill-icon {
@@ -448,8 +424,8 @@
       color: var(--navy);
       transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), opacity 0.15s;
     }
-    .footer-social a:hover { opacity: 0.75; transform: translateY(-3px) scale(1.08); }
-    .footer-social a:active { transform: translateY(0) scale(0.95); }
+    .footer-social a:hover { opacity: 0.75; transform: scale(1.15); }
+    .footer-social a:active { transform: scale(0.95); }
 
     @media (max-width: 700px) {
       footer { padding: 2rem 1.5rem; }
@@ -518,7 +494,7 @@
     .field input::placeholder { color: #cbd5e1; }
 
     .modal-submit {
-      position: relative; overflow: hidden; isolation: isolate;
+      position: relative;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.95rem; font-weight: 700;
       color: var(--white); background: var(--navy);
@@ -526,21 +502,12 @@
       margin-top: 0.25rem;
       transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.15s;
     }
-    .modal-submit::after {
-      content: ''; position: absolute; top: 0; left: -75%;
-      width: 45%; height: 100%;
-      background: linear-gradient(115deg, transparent, rgba(255,255,255,0.5), transparent);
-      transform: skewX(-18deg);
-      transition: left 0.7s cubic-bezier(0.16,1,0.3,1);
-      pointer-events: none;
-    }
-    .modal-submit:hover:not(:disabled)::after { left: 135%; }
     .modal-submit:hover:not(:disabled) {
-      transform: translateY(-2px) scale(1.01);
+      transform: scale(1.05);
       box-shadow: 0 12px 24px -6px rgba(18,33,63,0.35), 0 4px 8px -2px rgba(18,33,63,0.2);
     }
     .modal-submit:active:not(:disabled) {
-      transform: translateY(0) scale(0.97);
+      transform: scale(1.01);
       transition-duration: 0.12s;
     }
     .modal-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
