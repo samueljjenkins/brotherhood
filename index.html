@@ -13,14 +13,16 @@
 
     :root {
       --black:   #000000;
-      --navy:    #000000;
+      --navy:    #12213f;
+      --accent:  #86ade0;
       --offwhite:#fbfbf8;
-      --text:    #000000;
+      --text:    #12213f;
       --muted:   #657083;
       --light:   #9aa6b8;
-      --border:  rgba(7, 24, 39, 0.1);
+      --border:  rgba(18, 33, 63, 0.12);
       --white:   #ffffff;
       --surface: #f4f4f2;
+      --card-bg: #f2f4f8;
     }
 
     html { scroll-behavior: smooth; }
@@ -86,7 +88,7 @@
       display: inline-flex; align-items: center; text-decoration: none;
     }
     .nav-logo-script img {
-      display: block; width: 160px; height: auto;
+      display: block; width: 150px; height: auto;
       object-fit: contain;
     }
 
@@ -94,15 +96,6 @@
       grid-column: 3; justify-self: end;
       display: flex; align-items: center; gap: 0.5rem;
     }
-
-    .nav-cta {
-      display: inline-flex; align-items: center;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
-      color: #fff; background: #000; text-decoration: none;
-      padding: 0.45rem 1.05rem; border-radius: 999px; transition: opacity 0.15s;
-    }
-    .nav-cta:hover { opacity: 0.75; }
 
     .nav-menu-toggle {
       width: 40px; height: 44px;
@@ -144,28 +137,24 @@
 
     @media (max-width: 560px) {
       nav { min-height: 56px; padding: 0.4rem 1.25rem; }
-      .nav-logo-script img { width: 130px; }
+      .nav-logo-script img { width: 122px; }
       .nav-links { right: 1.25rem; }
-      .nav-cta { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
     }
 
     /* ── HERO ────────────────────────────────── */
     .hero {
-      min-height: calc(100svh - 64px);
-      background: url('MCC.jpg') center 54% / cover no-repeat, var(--offwhite);
-      display: flex; align-items: center; justify-content: center;
-      padding: 5rem 2.25rem;
+      background: var(--offwhite);
+      padding: 6.5rem 2.25rem 5.5rem;
       margin-top: 64px;
       position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        linear-gradient(180deg, rgba(2,11,20,0.6) 0%, rgba(2,11,20,0.74) 100%),
-        linear-gradient(90deg, rgba(2,11,20,0.64) 0%, rgba(2,11,20,0.42) 50%, rgba(2,11,20,0.64) 100%);
-      z-index: 0;
+    .hero-art {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      width: 100%;
+      opacity: 0.45;
+      pointer-events: none; z-index: 0;
     }
 
     .hero-inner {
@@ -177,40 +166,21 @@
       max-width: 680px; min-width: 0; margin: 0 auto; text-align: center;
     }
 
+    .hero .overline { text-align: center; }
+
     .hero h1 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(3rem, 6.5vw, 5.85rem);
-      font-weight: 900; color: var(--white);
-      line-height: 1; letter-spacing: -0.01em;
-      margin-bottom: 1.25rem;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.45);
+      font-size: clamp(2.75rem, 6vw, 5.25rem);
+      font-weight: 900; color: var(--navy);
+      line-height: 1.02; letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin: 1rem 0 2.25rem;
       text-align: center;
-    }
-
-    .hero-sub {
-      font-size: clamp(0.95rem, 1.7vw, 1.05rem);
-      color: rgba(255,255,255,0.8);
-      line-height: 1.75;
-      max-width: 520px;
-      margin: 0 auto 2rem;
-      font-weight: 400;
-      text-shadow: 0 1px 18px rgba(0,0,0,0.28);
     }
 
     .hero-btns {
       display: flex; align-items: center; justify-content: center;
       gap: 0.75rem; flex-wrap: wrap;
-    }
-
-    .hero .btn-dark { background: #85B4D3; color: var(--white); border: 2px solid #1E3057; }
-    .hero .btn-light {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.42);
-      color: var(--white);
-    }
-    .hero .btn-light:hover {
-      background: rgba(255,255,255,0.16);
-      border-color: rgba(255,255,255,0.65);
     }
 
     .btn-dark {
@@ -222,36 +192,28 @@
       letter-spacing: -0.01em;
       transition: opacity 0.15s, transform 0.2s;
     }
-    .btn-dark:hover { opacity: 0.92; }
+    .btn-dark:hover { opacity: 0.9; }
 
     .btn-light {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.95rem; font-weight: 600;
-      color: var(--text);
-      background: rgba(255,255,255,0.86);
-      border: 1px solid rgba(7,24,39,0.16);
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--navy);
+      background: var(--white);
+      border: 1.5px solid var(--navy);
       border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
-      transition: background 0.15s, border-color 0.15s, transform 0.2s;
+      transition: background 0.15s, opacity 0.15s, transform 0.2s;
     }
-    .btn-light:hover { background: var(--white); border-color: rgba(7,24,39,0.24); }
+    .btn-light:hover { opacity: 0.7; }
 
     @media (max-width: 920px) {
-      .hero {
-        min-height: calc(100svh - 64px);
-        padding: 3.75rem 1.5rem;
-        background-position: center;
-      }
+      .hero { padding: 5.5rem 1.5rem 4.5rem; }
       .hero-inner { max-width: 100%; }
       .hero-copy { text-align: center; max-width: 36rem; margin: 0 auto; }
       .hero h1 {
-        font-size: clamp(2.5rem, 7vw, 4rem);
-        line-height: 1.02; margin-bottom: 1rem;
-      }
-      .hero-sub {
-        font-size: 0.9rem; line-height: 1.65;
-        margin-left: auto; margin-right: auto; margin-bottom: 1.75rem;
+        font-size: clamp(2.25rem, 7vw, 3.5rem);
+        line-height: 1.05; margin: 0.85rem 0 1.75rem;
       }
       .hero-btns {
         width: min(100%, 22rem); margin-inline: auto; gap: 0.6rem;
@@ -261,12 +223,11 @@
 
     @media (max-width: 560px) {
       .hero {
-        min-height: calc(100svh - 56px);
         margin-top: 56px;
-        padding: 3.5rem 1.5rem;
+        padding: 4rem 1.5rem 3.5rem;
       }
       .hero-copy { max-width: 100%; }
-      .hero h1 { font-size: clamp(2.1rem, 9vw, 2.75rem); line-height: 1.05; }
+      .hero h1 { font-size: clamp(2rem, 9vw, 2.6rem); line-height: 1.08; }
     }
 
     /* ── SECTION SHARED ──────────────────────── */
@@ -278,7 +239,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--navy); display: block; margin-bottom: 0.75rem;
+      color: var(--accent); display: block; margin-bottom: 0.75rem;
     }
 
     .heading {
@@ -299,53 +260,29 @@
       .overline { font-size: 0.68rem; }
     }
 
-    /* ── ABOUT ───────────────────────────────── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1fr);
-      gap: clamp(2.5rem, 6vw, 5rem);
-      align-items: start;
+    /* ── WHY WE EXIST ────────────────────────── */
+    .why-header { text-align: center; margin-bottom: 3rem; }
+    .why-body {
+      max-width: 760px; margin: 0 auto;
     }
-    @media (max-width: 860px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2.75rem; }
+    .why-body p {
+      font-size: 1rem; color: var(--muted); line-height: 1.85;
+      text-align: justify; margin-bottom: 1.4rem;
     }
-
-    .about-inner { max-width: 620px; text-align: left; }
-    .about-inner .heading {
-      font-size: clamp(2rem, 3.8vw, 3rem);
-      margin-top: 0.5rem; line-height: 1.08;
-    }
-    .about-lead {
-      font-size: 1rem; color: var(--navy);
-      line-height: 1.78; margin-top: 1.5rem;
-      font-weight: 600; max-width: 600px;
-    }
-    .about-body {
-      font-size: 0.92rem; color: var(--muted);
-      line-height: 1.82; margin-top: 1rem; max-width: 580px;
-    }
-
-    .about-photo {
-      overflow: hidden; border-radius: 18px;
-      background: var(--white); aspect-ratio: 1.18;
-    }
-    .about-photo img {
-      display: block; width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
+    .why-quote {
+      font-weight: 700; color: var(--navy) !important;
+      text-align: left !important; line-height: 1.6 !important;
+      margin-top: 0.5rem !important; margin-bottom: 0 !important;
     }
 
     @media (max-width: 700px) {
-      .about-grid { gap: 2rem; }
-      .about-inner .heading { font-size: clamp(1.85rem, 9.5vw, 2.5rem); }
-      .about-lead { font-size: 1rem; line-height: 1.72; margin-top: 1.2rem; }
-      .about-body { font-size: 0.92rem; line-height: 1.72; }
-      .about-photo { border-radius: 14px; aspect-ratio: 1.08; }
+      .why-header { margin-bottom: 2rem; }
+      .why-body p { font-size: 0.95rem; line-height: 1.75; text-align: left; }
     }
 
     /* ── PILLARS ──────────────────────────────── */
     .pillars-bg { background: var(--white); }
     .pillars-header { text-align: center; margin-bottom: 4.5rem; }
-    .pillars-header .overline { color: var(--navy); }
     .pillars-header .heading { color: var(--navy); }
 
     .pillars-grid {
@@ -359,109 +296,114 @@
     }
 
     .pillar {
-      background: var(--white);
-      border: 1px solid rgba(7,24,39,0.09);
-      border-radius: 16px;
+      background: var(--card-bg);
+      border: 1px solid rgba(18,33,63,0.06);
+      border-radius: 18px;
       padding: 3rem 2.5rem;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
       transition: box-shadow 0.3s, transform 0.3s;
       cursor: default;
     }
     .pillar:hover {
-      box-shadow: 0 8px 36px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 36px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
       transform: translateY(-2px);
     }
     .pillar h3 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.2rem; font-weight: 700; color: var(--navy);
+      font-size: 1.35rem; font-weight: 700; color: var(--navy);
       margin-bottom: 0.9rem; letter-spacing: -0.02em; text-align: center;
     }
     .pillar p { font-size: 0.93rem; color: var(--muted); line-height: 1.78; text-align: center; }
 
     @media (max-width: 700px) {
       .pillar { padding: 2.25rem 1.75rem; }
-      .pillar h3 { font-size: 1.1rem; }
+      .pillar h3 { font-size: 1.15rem; }
       .pillar p { font-size: 0.9rem; line-height: 1.72; }
     }
 
-    /* ── ZOOM CARD ────────────────────────────── */
-    .zoom-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem; align-items: center;
-    }
-    @media (max-width: 760px) { .zoom-grid { grid-template-columns: 1fr; gap: 3rem; } }
-    @media (max-width: 700px) { .zoom-grid { gap: 2.1rem; } }
-
-    .zoom-card {
-      background: var(--white);
-      border: 1px solid rgba(7,24,39,0.1);
-      border-radius: 20px; overflow: hidden; padding: 0.65rem;
-      transition: border-color 0.35s, transform 0.35s;
-    }
-    .zoom-card:hover { border-color: rgba(7,24,39,0.18); }
-
-    .zoom-card-header {
+    /* ── FILMS ────────────────────────────────── */
+    .films-header { text-align: center; margin-bottom: 3rem; }
+    .films-video {
+      position: relative;
+      width: min(420px, 100%);
+      aspect-ratio: 16 / 10;
+      border-radius: 20px;
+      overflow: hidden;
       background: var(--surface);
-      border: 1px solid rgba(7,24,39,0.08);
-      border-radius: 16px; padding: 1.85rem;
-      position: relative; overflow: hidden;
     }
-    .zoom-card-title {
+    .films-video video {
+      display: block; width: 100%; height: 100%; object-fit: cover;
+    }
+    .films-mute-toggle {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.92); border: none;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: opacity 0.15s;
+    }
+    .films-mute-toggle:hover { opacity: 0.8; }
+    .films-mute-toggle svg { display: block; }
+    .films-mute-toggle .icon-unmuted { display: none; }
+    .films-mute-toggle.is-unmuted .icon-muted { display: none; }
+    .films-mute-toggle.is-unmuted .icon-unmuted { display: block; }
+
+    /* ── LEARN MORE ───────────────────────────── */
+    .learn-more-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .learn-more-copy { max-width: 340px; }
+    .learn-more-copy p {
+      margin-top: 0.75rem; color: var(--muted);
+      font-size: 0.95rem; line-height: 1.7;
+    }
+
+    .cta-pill {
+      display: inline-flex; align-items: center; gap: 1.5rem;
+      background: var(--white); border: 1.5px solid var(--navy);
+      border-radius: 999px; padding: 0.4rem 0.4rem 0.4rem 1.75rem;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 800;
-      color: var(--navy); letter-spacing: -0.04em; line-height: 1.02;
-      position: relative; z-index: 1;
+      font-size: 1rem; font-weight: 700; color: var(--navy);
+      cursor: pointer; transition: opacity 0.15s;
     }
-    .zoom-card-sub {
-      font-size: 0.9rem; color: var(--muted);
-      margin-top: 0.75rem; line-height: 1.65; max-width: 330px;
-      position: relative; z-index: 1;
-    }
-    .zoom-card-footer {
-      padding: 0.65rem 0 0; background: var(--white);
-    }
-    .zoom-card-footer button {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.88rem; font-weight: 700;
-      color: var(--white); background: #85B4D3;
-      border: 2px solid #1E3057; border-radius: 12px;
-      padding: 0.85rem 1.4rem; cursor: pointer; width: 100%;
-      transition: opacity 0.15s, transform 0.2s;
-    }
-    .zoom-card-footer button:hover { opacity: 0.9; }
-
-
-@media (max-width: 700px) {
-      .zoom-card { border-radius: 16px; padding: 0.55rem; }
-      .zoom-card-header { border-radius: 12px; padding: 1.35rem; }
-      .zoom-card-title { font-size: 1.8rem; }
-      .zoom-card-sub { font-size: 0.86rem; }
+    .cta-pill:hover { opacity: 0.75; }
+    .cta-pill-icon {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--navy); flex: 0 0 auto;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .weekly-list {
-      list-style: none; display: grid; gap: 0.9rem; margin-top: 1.75rem;
-    }
-    .weekly-list li {
-      display: flex; align-items: flex-start; gap: 0.75rem;
-      font-size: 0.93rem; color: var(--navy); font-weight: 600; line-height: 1.5;
-    }
-    .weekly-list li::before {
-      content: '';
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--navy); flex: 0 0 auto; margin-top: 0.38rem;
+    @media (max-width: 700px) {
+      .learn-more-row { gap: 1.5rem; }
+      .cta-pill { width: 100%; justify-content: space-between; }
     }
 
     /* ── FOOTER ───────────────────────────────── */
     footer {
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.07);
-      padding: 2.5rem 2rem; text-align: center;
+      background: var(--offwhite);
+      border-top: 1px solid rgba(18,33,63,0.09);
+      padding: 2.25rem 2.25rem;
     }
-    footer p { font-size: 0.82rem; color: rgba(255,255,255,0.28); line-height: 1.7; }
+    .footer-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    .footer-social { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-social a {
+      width: 38px; height: 38px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid var(--navy); color: var(--navy);
+      transition: opacity 0.15s;
+    }
+    .footer-social a:hover { opacity: 0.7; }
+    .footer-social a.filled { background: var(--navy); color: var(--white); }
 
     @media (max-width: 700px) {
       footer { padding: 2rem 1.5rem; }
-      footer p { font-size: 0.74rem; }
+      .footer-inner { justify-content: center; text-align: center; }
+      footer p { font-size: 0.78rem; }
     }
 
     /* ── MODAL ────────────────────────────────── */
@@ -496,7 +438,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.72rem; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--navy); margin-bottom: 0.6rem;
+      color: var(--accent); margin-bottom: 0.6rem;
     }
     .modal h3 {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -574,7 +516,7 @@
 <div class="nav-wrap">
   <nav id="main-nav">
     <a href="#" class="nav-logo-script" aria-label="Called Up home">
-      <img src="CalledUpWebsiteLogo.png" alt="Called Up" />
+      <img src="CalledUpScript.png" alt="Called Up" />
     </a>
     <div class="nav-actions">
       <button class="nav-menu-toggle" id="nav-menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">
@@ -587,109 +529,131 @@
       </button>
     </div>
     <div class="nav-links" id="nav-links">
-      <a href="#about">About</a>
-      <a href="#community">Mission</a>
-      <a href="#weekly-call">Weekly Call</a>
+      <a href="#about">Why We Exist</a>
+      <a href="#what-we-do">What We Do</a>
+      <a href="#films">Films</a>
+      <a href="#learn-more">Get Access</a>
     </div>
   </nav>
 </div>
 
 <!-- ── HERO ── -->
 <section class="hero">
+  <img class="hero-art" src="hero-line-art.png" alt="" aria-hidden="true" onerror="this.style.display='none'" />
   <div class="hero-inner">
     <div class="hero-copy">
+      <span class="overline">Ephesians 4:1-6</span>
       <h1>College Baseball<br>Discipleship</h1>
-      <p class="hero-sub">Called Up exists to disciple Jesus followers inside college baseball — and send them back to bring the gospel to their own teams.</p>
       <div class="hero-btns">
-        <button class="btn-dark" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSer6Y_nirchmU3vqpIHdEOqBjknmILjk7F3-Sp6btBwh1vVxA/viewform','_blank')">Join the Call</button>
+        <button class="btn-dark" onclick="openModal()">Get access</button>
         <button class="btn-light" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn more</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── ABOUT ── -->
+<!-- ── WHY WE EXIST ── -->
 <section class="section section-contrast" id="about">
   <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-inner">
-        <div data-reveal>
-          <span class="overline">Why Called Up Exists</span>
-          <h2 class="heading">You're Not the Only One Following Jesus.</h2>
-        </div>
-        <div data-reveal style="transition-delay:0.12s">
-          <p class="about-lead">Called Up started because we kept meeting guys who loved Jesus and loved baseball but had no idea how to connect the two. Guys who were grinding through their season feeling like their faith was something they did on Sunday, not something that had anything to do with what was happening Monday through Saturday.</p>
-          <p class="about-body">We create space for baseball players to grow through Scripture, real conversation, and practical training in what it looks like to love God and love your teammates — not just as a player, but as a witness.</p>
-          <p class="about-body">This isn't about building something big. It's about seeing one faithful guy per roster go back to his team and let the Holy Spirit do what only He can do.</p>
-        </div>
-      </div>
-      <div data-reveal style="transition-delay:0.18s">
-        <figure class="about-photo">
-          <img src="about-photo.jpeg" alt="Called Up baseball players gathered together" />
-        </figure>
-      </div>
+    <div class="why-header" data-reveal>
+      <span class="overline">Why We Exist</span>
+    </div>
+    <div class="why-body" data-reveal style="transition-delay:0.1s">
+      <p>We want to see Christian baseball players unite around the truth of the gospel and walk worthy of the calling with which they have been called. Our mission is to help players realize their identity is rooted in being sons of God, not in their success on the baseball field.</p>
+      <p>We want to find the guys who are pursuing Jesus and create a space for them to grow and be discipled. We want to encourage them, stir their faith, and see their heart for their teams grow through the revelation that their team is a mission field, and that God's heart is to see all come to know Him.</p>
+      <p>We want to see the Kingdom of God reach every team, locker room, and organization through learning love God and to love others with all gentleness and lowliness, bearing with one another in love. Our mission is to make disciples who make disciples.</p>
+      <p class="why-quote">"As a prisoner for the Lord, then, I urge you to live a life worthy of the calling you have received." Ephesians 4:1</p>
     </div>
   </div>
 </section>
 
-<!-- ── PILLARS ── -->
-<section class="section pillars-bg" id="community">
+<!-- ── WHAT WE DO ── -->
+<section class="section pillars-bg" id="what-we-do">
   <div class="section-inner">
     <div class="pillars-header" data-reveal>
-      <span class="overline" style="display:block;text-align:center;">What We Do</span>
-      <h2 class="heading" style="text-align:center;">Formed to Bring the Kingdom <br/>Into the Locker Room</h2>
+      <span class="overline">What We Do</span>
     </div>
 
     <div class="pillars-grid" data-stagger>
       <div class="pillar" data-reveal>
-        <h3>Gospel Talks and Formation</h3>
-        <p>Every week we open the Word together and talk about what it actually looks like to follow Jesus.</p>
+        <h3>Community</h3>
+        <p>We host monthly Zoom calls a way to create a community of Jesus followers from all over the country.</p>
       </div>
       <div class="pillar" data-reveal>
-        <h3>Brotherhood Across Programs</h3>
-        <p>There's something that happens when guys from all across the country realize they're carrying the same burden and the same calling.</p>
+        <h3>Discipleship</h3>
+        <p>We teach guys how to run a discovery Bible study through testimony, gospel talks, and lessons on what following Jesus looks like.</p>
       </div>
       <div class="pillar" data-reveal>
-        <h3>Bring the Gospel to Your Team</h3>
-        <p>We'll teach you how to start a Bible study on your team, actually bring the gospel into the locker room, and normalize talking about Jesus with your teammates.</p>
+        <h3>Mission</h3>
+        <p>We allow these guys to learn from faithful leaders so they can be equipped to carry the gospel to their teammates.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── ZOOM CALL ── -->
-<section class="section section-contrast" id="weekly-call">
+<!-- ── FILMS ── -->
+<section class="section" id="films">
   <div class="section-inner">
-    <div class="zoom-grid">
-      <div data-reveal>
-        <span class="overline">The Weekly Call</span>
-        <h2 class="heading">Are You Living on Mission?</h2>
-        <p class="body-text">Every week we get on a call — open the Word, hear from guys who are further down the road, pray for our teams, and talk honestly about what it looks like to follow Jesus in a college baseball locker room.</p>
-        <p class="body-text" style="margin-top:0.75rem;">The goal is simple: grow in your faith, learn how to lead a Discovery Bible Study, and go back to your team ready to carry the gospel with you.</p>
-        <ul class="weekly-list">
-          <li>Get discipled by people who understand what you're going through.</li>
-          <li>Get connected with followers of Jesus around the country.</li>
-          <li>Learn how to actually reach your teammates.</li>
-        </ul>
+    <div class="films-header" data-reveal>
+      <span class="overline">Films</span>
+    </div>
+    <div class="films-video" data-reveal style="transition-delay:0.1s">
+      <video id="films-video" src="films-home-plate.mp4" poster="films-home-plate-poster.jpg" muted autoplay loop playsinline></video>
+      <button class="films-mute-toggle" id="films-mute-toggle" type="button" aria-label="Unmute video" onclick="toggleFilmsMute()">
+        <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
+          <path d="M17 9l4 4M21 9l-4 4" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <svg class="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
+          <path d="M15.5 9.5a3.5 3.5 0 0 1 0 5" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M17.8 7.2a7 7 0 0 1 0 9.6" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ── LEARN MORE ── -->
+<section class="section section-contrast" id="learn-more">
+  <div class="section-inner">
+    <div class="learn-more-row" data-reveal>
+      <div class="learn-more-copy">
+        <span class="overline">Learn More</span>
+        <p>Fill out the application so we can connect and learn more about you.</p>
       </div>
-      <div data-reveal style="transition-delay:0.15s">
-        <div class="zoom-card">
-          <div class="zoom-card-header">
-            <div class="zoom-card-title">Weekly<br/>Formation Call</div>
-            <div class="zoom-card-sub">Scripture, gospel conversations, prayer, and practical training — for guys still in the game.</div>
-          </div>
-          <div class="zoom-card-footer">
-            <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSer6Y_nirchmU3vqpIHdEOqBjknmILjk7F3-Sp6btBwh1vVxA/viewform','_blank')">Join the Call</button>
-          </div>
-        </div>
-      </div>
+      <button class="cta-pill" onclick="openModal()">
+        <span>Get access</span>
+        <span class="cta-pill-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
     </div>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
 <footer>
-  <p>&copy; 2026 Called Up &nbsp;&middot;&nbsp; "As a prisoner for the Lord, then, I urge you to live a life worthy of the calling you have received." — Ephesians 4:1 NIV</p>
+  <div class="footer-inner">
+    <p>&copy; 2026 Called Up Life</p>
+    <div class="footer-social">
+      <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
+          <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/>
+        </svg>
+      </a>
+      <a href="#" class="filled" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M10 9.5v5l4.5-2.5Z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
 </footer>
 
 <!-- ── MODAL ── -->
@@ -699,8 +663,8 @@
 
     <div id="modal-form-wrap">
       <p class="modal-eyebrow">Called Up</p>
-      <h3>Join the Call</h3>
-      <p class="modal-sub">Drop your email and we'll send the GroupMe link, call details, and next steps for getting connected.</p>
+      <h3>Get Access</h3>
+      <p class="modal-sub">Fill out the application so we can connect and learn more about you.</p>
 
       <form id="join-form" onsubmit="handleSubmit(event)">
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
@@ -777,6 +741,15 @@
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
+
+  // ── Films mute toggle ──
+  const filmsVideo = document.getElementById('films-video');
+  const filmsMuteToggle = document.getElementById('films-mute-toggle');
+  function toggleFilmsMute() {
+    filmsVideo.muted = !filmsVideo.muted;
+    filmsMuteToggle.classList.toggle('is-unmuted', !filmsVideo.muted);
+    filmsMuteToggle.setAttribute('aria-label', filmsVideo.muted ? 'Unmute video' : 'Mute video');
+  }
 
   // ── Modal ──
   function openModal() {
