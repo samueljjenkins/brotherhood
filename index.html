@@ -43,10 +43,6 @@
       from { opacity: 0; }
       to   { opacity: 1; }
     }
-    @keyframes scaleIn {
-      from { opacity: 0; transform: scale(0.96) translateY(12px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
-    }
     @keyframes navDrop {
       from { opacity: 0; transform: translateY(-12px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -435,119 +431,6 @@
       footer p { font-size: 0.78rem; }
     }
 
-    /* ── MODAL ────────────────────────────────── */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.5); backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.22s;
-    }
-    .modal-overlay.open { opacity: 1; pointer-events: all; }
-
-    .modal {
-      background: var(--white); border-radius: 20px;
-      width: 100%; max-width: 450px; padding: 2.75rem 2.5rem;
-      transform: translateY(20px) scale(0.97);
-      transition: transform 0.32s cubic-bezier(0.34,1.56,0.64,1), opacity 0.22s;
-      opacity: 0; position: relative;
-    }
-    .modal-overlay.open .modal { transform: translateY(0) scale(1); opacity: 1; }
-
-    .modal-close {
-      position: absolute; top: 1rem; right: 1.2rem;
-      width: 28px; height: 28px;
-      background: var(--surface); border: none; border-radius: 6px;
-      cursor: pointer; color: var(--muted); font-size: 1rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.15s, color 0.15s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .modal-close:hover { background: rgba(10,10,10,0.08); color: var(--text); transform: scale(1.1) rotate(90deg); }
-    .modal-close:active { transform: scale(0.9) rotate(90deg); }
-
-    .modal-eyebrow {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 0.6rem;
-    }
-    .modal h3 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.55rem; font-weight: 800; color: var(--navy);
-      letter-spacing: -0.03em; margin-bottom: 0.5rem; line-height: 1.2;
-    }
-    .modal-sub {
-      font-size: 0.88rem; color: var(--muted);
-      line-height: 1.65; margin-bottom: 1.75rem;
-    }
-
-    .modal form { display: flex; flex-direction: column; gap: 0.85rem; }
-    .field { display: flex; flex-direction: column; gap: 0.3rem; }
-    .field label {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.75rem; font-weight: 700; color: var(--text);
-      letter-spacing: 0.05em; text-transform: uppercase;
-    }
-    .field input {
-      border: 1.5px solid var(--border); border-radius: 9px;
-      padding: 0.72rem 1rem; font-size: 0.95rem; font-family: 'Inter', sans-serif;
-      color: var(--text); outline: none; width: 100%; transition: border-color 0.18s;
-    }
-    .field input:focus { border-color: var(--navy); }
-    .field input::placeholder { color: #cbd5e1; }
-
-    .modal-submit {
-      position: relative;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 0.95rem; font-weight: 700;
-      color: var(--white); background: var(--navy);
-      border: none; border-radius: 10px; padding: 0.85rem; cursor: pointer;
-      margin-top: 0.25rem;
-      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.15s;
-    }
-    .modal-submit:hover:not(:disabled) {
-      transform: scale(1.05);
-      box-shadow: 0 12px 24px -6px rgba(18,33,63,0.35), 0 4px 8px -2px rgba(18,33,63,0.2);
-    }
-    .modal-submit:active:not(:disabled) {
-      transform: scale(1.01);
-      transition-duration: 0.12s;
-    }
-    .modal-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-    .modal-legal {
-      text-align: center; font-size: 0.73rem; color: var(--light); margin-top: 0.75rem;
-    }
-
-    .modal-success {
-      display: none; flex-direction: column;
-      align-items: center; text-align: center; gap: 1rem; padding: 1.5rem 0;
-    }
-    .modal-success.show { display: flex; animation: scaleIn 0.4s cubic-bezier(0.22,1,0.36,1) both; }
-    .success-ring {
-      width: 60px; height: 60px; border-radius: 50%;
-      border: 1.5px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .modal-success h3 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.4rem; font-weight: 800;
-      color: var(--text); letter-spacing: -0.03em;
-    }
-    .modal-success p {
-      font-size: 0.9rem; color: var(--muted); line-height: 1.7; max-width: 300px;
-    }
-
-    @media (max-width: 560px) {
-      .modal-overlay { align-items: flex-end; padding: 0.75rem; }
-      .modal {
-        max-height: calc(100svh - 1.5rem); overflow-y: auto;
-        border-radius: 18px; padding: 2.3rem 1.35rem 1.5rem;
-      }
-      #join-form > div:first-child { grid-template-columns: 1fr !important; }
-      .modal h3 { font-size: 1.35rem; }
-      .modal-sub { font-size: 0.84rem; margin-bottom: 1.35rem; }
-      .field input { font-size: 1rem; padding: 0.78rem 0.9rem; }
-    }
   </style>
 </head>
 <body>
@@ -571,7 +454,7 @@
       <a href="#about">Why We Exist</a>
       <a href="#what-we-do">What We Do</a>
       <a href="#films">Films</a>
-      <a href="#learn-more">Get Access</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSer6Y_nirchmU3vqpIHdEOqBjknmILjk7F3-Sp6btBwh1vVxA/viewform" target="_blank" rel="noopener">Get Access</a>
     </div>
   </nav>
 </div>
@@ -584,7 +467,7 @@
       <span class="overline">Ephesians 4:1-6</span>
       <h1><span style="white-space:nowrap">College Baseball</span><br>Discipleship</h1>
       <div class="hero-btns">
-        <button class="btn-dark" onclick="openModal()">Get access</button>
+        <button class="btn-dark" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSer6Y_nirchmU3vqpIHdEOqBjknmILjk7F3-Sp6btBwh1vVxA/viewform','_blank')">Get access</button>
         <button class="btn-light" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn more</button>
       </div>
     </div>
@@ -661,7 +544,7 @@
         <span class="overline">Learn More</span>
         <p>Fill out the application so we can connect and learn more about you.</p>
       </div>
-      <button class="cta-pill" onclick="openModal()">
+      <button class="cta-pill" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSer6Y_nirchmU3vqpIHdEOqBjknmILjk7F3-Sp6btBwh1vVxA/viewform','_blank')">
         <span>Get access</span>
         <span class="cta-pill-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -694,52 +577,6 @@
     </div>
   </div>
 </footer>
-
-<!-- ── MODAL ── -->
-<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">&#x2715;</button>
-
-    <div id="modal-form-wrap">
-      <p class="modal-eyebrow">Called Up</p>
-      <h3>Get Access</h3>
-      <p class="modal-sub">Fill out the application so we can connect and learn more about you.</p>
-
-      <form id="join-form" onsubmit="handleSubmit(event)">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
-          <div class="field">
-            <label for="first-name">First Name</label>
-            <input type="text" id="first-name" name="first_name" placeholder="First" required autocomplete="given-name" />
-          </div>
-          <div class="field">
-            <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last_name" placeholder="Last" required autocomplete="family-name" />
-          </div>
-        </div>
-        <div class="field">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="you@university.edu" required autocomplete="email" />
-        </div>
-        <div class="field">
-          <label for="school">School</label>
-          <input type="text" id="school" name="school" placeholder="University or College" required autocomplete="organization" />
-        </div>
-        <button type="submit" class="modal-submit" id="submit-btn">Send Me the Next Step</button>
-      </form>
-      <p class="modal-legal">You'll receive the GroupMe link and call details by email.</p>
-    </div>
-
-    <div class="modal-success" id="modal-success">
-      <div class="success-ring">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M5 12 L10 17 L19 8" stroke="#0a0a0a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <h3>You're In.</h3>
-      <p>Check your inbox. We just sent your next step for joining Called Up and stepping into the mission.</p>
-    </div>
-  </div>
-</div>
 
 <script>
   // ── Scroll-reveal ──
@@ -790,64 +627,6 @@
     filmsMuteToggle.setAttribute('aria-label', filmsVideo.muted ? 'Unmute video' : 'Mute video');
   }
 
-  // ── Modal ──
-  function openModal() {
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => document.getElementById('first-name').focus(), 320);
-  }
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('modal')) closeModal();
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-
-    const res = await fetch('https://ojdvfapeqoudqkgqgyqd.supabase.co/functions/v1/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        first_name: document.getElementById('first-name').value.trim(),
-        last_name:  document.getElementById('last-name').value.trim(),
-        email:      document.getElementById('email').value.trim(),
-        school:     document.getElementById('school').value.trim(),
-      }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      btn.textContent = data.error === 'already_signed_up'
-        ? 'Already signed up!'
-        : 'Something went wrong. Try again.';
-      btn.disabled = false;
-      return;
-    }
-
-    try {
-      await fetch('/api/welcome', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          first_name: document.getElementById('first-name').value.trim(),
-          email: document.getElementById('email').value.trim(),
-        }),
-      });
-    } catch (err) {
-      console.error('Welcome email failed:', err);
-    }
-
-    document.getElementById('modal-form-wrap').style.display = 'none';
-    document.getElementById('modal-success').classList.add('show');
-  }
 </script>
 </body>
 </html>
