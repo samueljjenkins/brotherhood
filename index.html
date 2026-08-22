@@ -223,7 +223,9 @@
     }
 
     @media (max-width: 920px) {
-      .hero { padding: 9rem 1.5rem 4.5rem; }
+      .hero {
+        padding: 9rem 1.5rem 4.5rem;
+      }
       .hero-inner { max-width: 100%; }
       .hero-copy { text-align: center; max-width: 42rem; margin: 0 auto; }
       .hero h1 {
@@ -239,6 +241,13 @@
     @media (max-width: 560px) {
       .hero {
         padding: 7rem 1.5rem 3.5rem;
+        min-height: 100svh;
+      }
+      .hero-art {
+        left: 50%; right: auto;
+        width: 260%; transform: translateX(-50%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 42%, black 68%, transparent 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 42%, black 68%, transparent 100%);
       }
       .hero-copy { max-width: 100%; }
       .hero h1 { font-size: clamp(1.45rem, 7.25vw, 2.3rem); line-height: 1.08; }
