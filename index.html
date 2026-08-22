@@ -103,9 +103,12 @@
       justify-content: flex-start; gap: 5px;
       background: transparent; border: none; border-radius: 0;
       cursor: pointer; padding-top: 10px; padding-bottom: 0;
-      position: relative; transition: opacity 0.15s;
+      position: relative; transition: opacity 0.15s, transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .nav-menu-toggle:hover { opacity: 0.65; }
+    .nav-menu-toggle:hover { opacity: 0.65; transform: scale(1.08); }
+    .nav-menu-toggle:active { transform: scale(0.92); }
+    .nav-menu-toggle:hover span:nth-child(2) { transform: translateX(3px); }
+    .nav-menu-toggle:hover span:nth-child(4) { transform: translateX(-3px); }
     .home-plate-outline {
       position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
     }
@@ -131,9 +134,9 @@
       font-size: 0.875rem; font-weight: 500;
       color: var(--muted); text-decoration: none;
       padding: 0.85rem 1rem; border-radius: 10px;
-      transition: color 0.15s, background 0.15s;
+      transition: color 0.15s, background 0.15s, transform 0.2s ease;
     }
-    .nav-links a:hover { color: var(--navy); background: rgba(7,24,39,0.06); }
+    .nav-links a:hover { color: var(--navy); background: rgba(7,24,39,0.06); transform: translateX(4px); }
 
     @media (max-width: 560px) {
       nav { min-height: 56px; padding: 0.4rem 1.25rem; }
@@ -447,9 +450,10 @@
       background: var(--surface); border: none; border-radius: 6px;
       cursor: pointer; color: var(--muted); font-size: 1rem;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.15s, color 0.15s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .modal-close:hover { background: rgba(10,10,10,0.08); color: var(--text); }
+    .modal-close:hover { background: rgba(10,10,10,0.08); color: var(--text); transform: scale(1.1) rotate(90deg); }
+    .modal-close:active { transform: scale(0.9) rotate(90deg); }
 
     .modal-eyebrow {
       font-family: 'Plus Jakarta Sans', sans-serif;
