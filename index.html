@@ -392,15 +392,13 @@
     }
     footer p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
 
-    .footer-social { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-social { display: flex; align-items: center; gap: 0.75rem; }
     .footer-social a {
-      width: 38px; height: 38px; border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      border: 1.5px solid var(--navy); color: var(--navy);
+      color: var(--navy);
       transition: opacity 0.15s;
     }
     .footer-social a:hover { opacity: 0.7; }
-    .footer-social a.filled { background: var(--navy); color: var(--white); }
 
     @media (max-width: 700px) {
       footer { padding: 2rem 1.5rem; }
@@ -642,16 +640,16 @@
     <p>&copy; 2026 Called Up Life</p>
     <div class="footer-social">
       <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>
-          <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/>
-          <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/>
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+          <rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="2"/>
+          <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+          <circle cx="17.6" cy="6.4" r="1.3" fill="currentColor"/>
         </svg>
       </a>
-      <a href="#" class="filled" aria-label="YouTube" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" stroke-width="1.8"/>
-          <path d="M10 9.5v5l4.5-2.5Z" fill="currentColor"/>
+      <a href="#" aria-label="YouTube" target="_blank" rel="noopener">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+          <rect x="1" y="4" width="22" height="16" rx="8" fill="currentColor"/>
+          <path d="M10 8.7v6.6l6-3.3Z" fill="#ffffff"/>
         </svg>
       </a>
     </div>
