@@ -347,40 +347,80 @@
     /* ── FILMS ────────────────────────────────── */
     .films-header { text-align: center; margin-bottom: 2rem; }
     .films-carousel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .films-stage {
       position: relative;
       width: min(640px, 100%);
-      margin: 0 auto;
       aspect-ratio: 4 / 3;
       overflow: hidden;
-      background: #000;
+      flex-shrink: 1;
     }
     .films-slide {
-      position: absolute; inset: 0;
-      display: none;
+      position: absolute; left: 50%; top: 50%;
+      width: 70%; aspect-ratio: 4 / 3;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 24px 50px rgba(7,24,39,0.26);
+      transition: transform 0.5s cubic-bezier(.22,.8,.3,1), opacity 0.5s ease, filter 0.5s ease;
+      transform: translate(-50%, -50%);
     }
-    .films-slide.is-active { display: block; }
     .films-slide video {
-      display: block; width: 100%; height: 100%; object-fit: contain; background: #000;
+      display: block; width: 100%; height: 100%; object-fit: cover; background: #000;
     }
+    .films-slide.is-active {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1; filter: none;
+      z-index: 3; cursor: default;
+    }
+    .films-slide.is-active video { object-fit: contain; }
+    .films-slide.is-prev {
+      transform: translate(calc(-50% - 58%), -50%) scale(0.8);
+      opacity: 0.55; filter: brightness(0.7);
+      z-index: 1; cursor: pointer;
+    }
+    .films-slide.is-next {
+      transform: translate(calc(-50% + 58%), -50%) scale(0.8);
+      opacity: 0.55; filter: brightness(0.7);
+      z-index: 1; cursor: pointer;
+    }
+    .films-slide.is-prev video,
+    .films-slide.is-next video { pointer-events: none; }
     .films-arrow {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 42px; height: 42px; border-radius: 50%;
-      background: rgba(255,255,255,0.92); border: none;
+      flex: 0 0 auto;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: var(--white); border: 1px solid rgba(7,24,39,0.1);
+      box-shadow: 0 8px 20px rgba(7,24,39,0.12);
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; z-index: 2;
+      cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
-    .films-arrow-prev { left: 0.75rem; }
-    .films-arrow-next { right: 0.75rem; }
+    .films-arrow:hover { box-shadow: 0 10px 24px rgba(7,24,39,0.18); }
+    .films-arrow:active { transform: scale(0.94); }
     .films-arrow svg { display: block; }
     .films-dots {
       display: flex; justify-content: center; gap: 0.5rem;
-      margin-top: 1.1rem;
+      margin-top: 1.25rem;
     }
     .films-dot {
       width: 8px; height: 8px; border-radius: 50%; padding: 0;
       background: var(--surface); border: none; cursor: pointer;
     }
     .films-dot.is-active { background: var(--navy); }
+
+    @media (max-width: 700px) {
+      .films-carousel { gap: 0.5rem; }
+      .films-stage { aspect-ratio: 4 / 3.4; }
+      .films-slide { width: 82%; }
+      .films-slide.is-prev { transform: translate(calc(-50% - 48%), -50%) scale(0.78); }
+      .films-slide.is-next { transform: translate(calc(-50% + 48%), -50%) scale(0.78); }
+      .films-arrow { width: 38px; height: 38px; }
+    }
 
     /* ── LEARN MORE ───────────────────────────── */
     .learn-more-row {
@@ -532,26 +572,28 @@
       <span class="overline">Films</span>
     </div>
     <div class="films-carousel" data-reveal>
-      <div class="films-slide is-active" data-film-slide>
-        <video id="films-video-1" poster="films-jt-guerrero-poster.jpg" controls loop playsinline preload="metadata">
-          <source src="films-jt-guerrero.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="films-slide" data-film-slide>
-        <video id="films-video-2" poster="films-home-plate-poster.jpg" controls loop playsinline preload="metadata">
-          <source src="films-home-plate.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="films-slide" data-film-slide>
-        <video id="films-video-3" poster="films-who-is-jesus-poster.jpg" controls loop playsinline preload="metadata">
-          <source src="films-who-is-jesus.mp4" type="video/mp4">
-        </video>
-      </div>
       <button class="films-arrow films-arrow-prev" type="button" aria-label="Previous film" onclick="filmsNav(-1)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path d="M15 6l-6 6 6 6" stroke="#12213f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
+      <div class="films-stage">
+        <div class="films-slide" data-film-slide onclick="filmsSlideClick(this)">
+          <video id="films-video-1" poster="films-jt-guerrero-poster.jpg" controls loop playsinline preload="metadata">
+            <source src="films-jt-guerrero.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="films-slide" data-film-slide onclick="filmsSlideClick(this)">
+          <video id="films-video-2" poster="films-home-plate-poster.jpg" controls loop playsinline preload="metadata">
+            <source src="films-home-plate.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="films-slide" data-film-slide onclick="filmsSlideClick(this)">
+          <video id="films-video-3" poster="films-who-is-jesus-poster.jpg" controls loop playsinline preload="metadata">
+            <source src="films-who-is-jesus.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
       <button class="films-arrow films-arrow-next" type="button" aria-label="Next film" onclick="filmsNav(1)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
           <path d="M9 6l6 6-6 6" stroke="#12213f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -651,16 +693,35 @@
   // ── Films carousel ──
   const filmSlides = document.querySelectorAll('[data-film-slide]');
   const filmDots = document.querySelectorAll('[data-film-dot]');
+  const filmCount = filmSlides.length;
   let filmIndex = 0;
+  function filmsRender() {
+    filmSlides.forEach((slide, idx) => {
+      const diff = (idx - filmIndex + filmCount) % filmCount;
+      slide.classList.remove('is-active', 'is-prev', 'is-next');
+      if (diff === 0) {
+        slide.classList.add('is-active');
+      } else if (diff === 1) {
+        slide.classList.add('is-next');
+      } else {
+        slide.classList.add('is-prev');
+      }
+    });
+    filmDots.forEach((dot, idx) => dot.classList.toggle('is-active', idx === filmIndex));
+  }
   function filmsShow(i) {
     const current = filmSlides[filmIndex].querySelector('video');
     if (current) current.pause();
-    filmIndex = (i + filmSlides.length) % filmSlides.length;
-    filmSlides.forEach((slide, idx) => slide.classList.toggle('is-active', idx === filmIndex));
-    filmDots.forEach((dot, idx) => dot.classList.toggle('is-active', idx === filmIndex));
+    filmIndex = (i + filmCount) % filmCount;
+    filmsRender();
   }
   function filmsNav(delta) { filmsShow(filmIndex + delta); }
   function filmsGoTo(i) { filmsShow(i); }
+  function filmsSlideClick(el) {
+    if (el.classList.contains('is-prev')) filmsNav(-1);
+    else if (el.classList.contains('is-next')) filmsNav(1);
+  }
+  filmsRender();
 
 </script>
 </body>
