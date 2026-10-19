@@ -555,17 +555,17 @@
       </button>
       <div class="films-stage">
         <div class="films-slide is-active" data-film-slide>
-          <video id="films-video-1" poster="films-jt-guerrero-poster.jpg" controls loop playsinline preload="metadata">
+          <video id="films-video-1" poster="films-jt-guerrero-poster.jpg" controls loop muted playsinline preload="metadata">
             <source src="films-jt-guerrero.mp4" type="video/mp4">
           </video>
         </div>
         <div class="films-slide" data-film-slide>
-          <video id="films-video-2" poster="films-home-plate-poster.jpg" controls loop playsinline preload="metadata">
+          <video id="films-video-2" poster="films-home-plate-poster.jpg" controls loop muted playsinline preload="metadata">
             <source src="films-home-plate.mp4" type="video/mp4">
           </video>
         </div>
         <div class="films-slide" data-film-slide>
-          <video id="films-video-3" poster="films-who-is-jesus-poster.jpg" controls loop playsinline preload="metadata">
+          <video id="films-video-3" poster="films-who-is-jesus-poster.jpg" controls loop muted playsinline preload="metadata">
             <source src="films-who-is-jesus.mp4" type="video/mp4">
           </video>
         </div>
@@ -666,6 +666,7 @@
   const filmCount = filmSlides.length;
   let filmIndex = 0;
   let filmAnimating = false;
+  let filmsInView = false;
   function filmsNav(delta) {
     if (filmAnimating) return;
     const nextIndex = (filmIndex + delta + filmCount) % filmCount;
@@ -689,6 +690,24 @@
     }, 560);
 
     filmIndex = nextIndex;
+    if (filmsInView) {
+      const newVideo = newSlide.querySelector('video');
+      if (newVideo) newVideo.play().catch(() => {});
+    }
+  }
+
+  const filmsStage = document.querySelector('.films-stage');
+  if (filmsStage) {
+    const filmsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        filmsInView = entry.isIntersecting;
+        const activeVideo = filmSlides[filmIndex].querySelector('video');
+        if (!activeVideo) return;
+        if (filmsInView) activeVideo.play().catch(() => {});
+        else activeVideo.pause();
+      });
+    }, { threshold: 0.5 });
+    filmsObserver.observe(filmsStage);
   }
 
 </script>
