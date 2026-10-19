@@ -128,6 +128,9 @@
     }
     .nav-links a:hover { color: var(--navy); background: rgba(7,24,39,0.06); }
 
+    .nav-wrap:not(:has(nav.scrolled)) .nav-menu-toggle span { background: var(--white); }
+    .nav-wrap:not(:has(nav.scrolled)) .home-plate-outline polygon { stroke: rgba(255,255,255,0.8); }
+
     @media (max-width: 560px) {
       nav { min-height: 56px; padding: 0.4rem 1.25rem; }
       .nav-logo-script img { width: 122px; }
@@ -136,54 +139,51 @@
 
     /* ── HERO ────────────────────────────────── */
     .hero {
-      background: var(--offwhite);
-      padding: 11rem 2.25rem 5.5rem;
-      min-height: 51vw;
       position: relative; overflow: hidden;
+      min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
+      padding: 7rem 2rem 4.5rem;
+      background: var(--offwhite);
+      text-align: center;
     }
 
-    .hero-art {
-      position: absolute; left: 0; right: 0; top: 0;
-      width: 100%; height: auto;
-      opacity: 0.6;
-      mix-blend-mode: multiply;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 55%, transparent 95%);
-      mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 55%, transparent 95%);
-      pointer-events: none; z-index: 0;
+    .hero-video-bg {
+      position: absolute; inset: 0; z-index: 0;
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .hero-scrim {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: none;
     }
 
     .hero-inner {
-      position: relative; z-index: 1;
-      width: min(100%, 900px); margin: 0 auto; text-align: center;
+      position: relative; z-index: 2;
+      width: min(100%, 820px); margin: 0 auto;
     }
-
-    .hero-copy {
-      max-width: 880px; min-width: 0; margin: 0 auto; text-align: center;
-    }
-
-    .hero .overline { text-align: center; }
 
     .hero h1 {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(2.75rem, 6vw, 4.75rem);
-      font-weight: 900; color: var(--navy);
-      line-height: 1.02; letter-spacing: -0.01em;
+      font-family: 'Oswald', 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.9rem, 7.5vw, 5.5rem);
+      font-weight: 700; color: var(--white);
+      line-height: 0.98; letter-spacing: 0.005em;
       text-transform: uppercase;
       margin: 1rem 0 2.25rem;
       text-align: center;
     }
 
+    .hero-nowrap { white-space: nowrap; }
+
     .hero-btns {
       display: flex; align-items: center; justify-content: center;
-      gap: 0.75rem; flex-wrap: wrap;
+      gap: 0.85rem; flex-wrap: wrap;
     }
 
     .btn-dark {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.95rem; font-weight: 700;
-      color: var(--white); background: var(--navy);
-      border: none; border-radius: 100px;
+      color: var(--navy); background: var(--white);
+      border: 1.5px solid var(--white); border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
     }
@@ -191,47 +191,76 @@
     .btn-light {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 0.95rem; font-weight: 700;
-      color: var(--navy);
-      background: var(--white);
-      border: 1.5px solid var(--navy);
+      color: var(--white);
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.75);
       border-radius: 100px;
       padding: 0.85rem 2rem; cursor: pointer;
       letter-spacing: -0.01em;
     }
 
+    .hero-ticker {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+      overflow: hidden;
+      background: rgba(0,0,0,0.55);
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding: 0.8rem 0;
+    }
+    .hero-ticker-track {
+      display: flex; width: max-content;
+      animation: hero-ticker-scroll 110s linear infinite;
+    }
+    .hero-ticker-track span {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--accent); white-space: nowrap;
+      padding-right: 2.5rem;
+    }
+    @keyframes hero-ticker-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-ticker-track { animation: none; }
+    }
+
     @media (max-width: 920px) {
       .hero {
-        padding: 9rem 1.5rem 4.5rem;
+        min-height: 90vh;
+        align-items: center;
+        padding: 7rem 1.75rem 5rem;
       }
-      .hero-inner { max-width: 100%; }
-      .hero-copy { text-align: center; max-width: 42rem; margin: 0 auto; }
+      .hero-scrim {
+        background: linear-gradient(to bottom,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0.18) 22%,
+          rgba(0,0,0,0.58) 40%,
+          rgba(0,0,0,0.58) 66%,
+          rgba(0,0,0,0.22) 84%,
+          rgba(0,0,0,0) 100%);
+      }
       .hero h1 {
-        font-size: clamp(2.25rem, 7vw, 3.5rem);
-        line-height: 1.05; margin: 0.85rem 0 1.75rem;
+        font-size: clamp(2.4rem, 9vw, 3.75rem);
+        line-height: 1.06; margin: 1.1rem 0 2rem;
       }
       .hero-btns {
-        width: min(100%, 22rem); margin-inline: auto; gap: 0.6rem;
+        width: min(100%, 22rem); margin-inline: auto; gap: 0.85rem;
       }
-      .hero-btns button { width: 100%; padding: 0.82rem 1.25rem; }
+      .hero-btns button { width: 100%; padding: 0.95rem 1.25rem; }
+      .hero-ticker { display: none; }
     }
 
     @media (max-width: 560px) {
-      .hero {
-        padding: 7rem 1.5rem 3.5rem;
-        min-height: 88svh;
-      }
-      .hero-art {
-        left: 50%; right: auto;
-        width: 260%; transform: translateX(-50%);
-        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 42%, black 68%, transparent 100%);
-        mask-image: linear-gradient(to bottom, transparent 0%, black 42%, black 68%, transparent 100%);
-      }
-      .hero-copy { max-width: 100%; }
-      .hero h1 { font-size: clamp(1.45rem, 7.25vw, 2.3rem); line-height: 1.08; }
+      .hero { min-height: 86vh; padding: 6.5rem 1.5rem 4.5rem; }
+      .hero-nowrap { white-space: normal; }
+      .hero h1 { font-size: clamp(2.1rem, 10vw, 2.6rem); line-height: 1.1; margin: 1rem 0 1.85rem; }
+      #about { padding-top: 3.25rem; }
+      .section { scroll-margin-top: 84px; }
     }
 
     /* ── SECTION SHARED ──────────────────────── */
-    .section { padding: 4.5rem 1.5rem; }
+    .section { padding: 4.5rem 1.5rem; scroll-margin-top: 96px; }
     .section-contrast { background: var(--offwhite); }
     .section-inner { max-width: 1080px; margin: 0 auto; }
 
@@ -317,11 +346,17 @@
 
     /* ── FILMS ────────────────────────────────── */
     .films-header { text-align: center; margin-bottom: 2rem; }
+    .films-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
     .films-video {
       position: relative;
-      width: min(640px, 100%);
-      margin: 0 auto;
-      aspect-ratio: 16 / 10;
+      width: min(480px, 100%);
+      flex: 1 1 320px;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
       background: var(--surface);
     }
@@ -339,6 +374,7 @@
     .films-mute-toggle .icon-unmuted { display: none; }
     .films-mute-toggle.is-unmuted .icon-muted { display: none; }
     .films-mute-toggle.is-unmuted .icon-unmuted { display: block; }
+    .films-video-feature video { object-fit: contain; background: #000; }
 
     /* ── LEARN MORE ───────────────────────────── */
     .learn-more-row {
@@ -427,15 +463,19 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <img class="hero-art" src="hero-line-art.png" alt="" aria-hidden="true" onerror="this.style.display='none'" />
+  <video class="hero-video-bg" src="hero-bg.mp4" poster="hero-bg-poster.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+  <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-inner">
-    <div class="hero-copy">
-      <span class="overline">Ephesians 4:1-6</span>
-      <h1><span style="white-space:nowrap">College Baseball</span><br>Discipleship</h1>
-      <div class="hero-btns">
-        <button class="btn-dark" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSer6Y_nirchmU3vqpIHdEOqBjknmILjk7F3-Sp6btBwh1vVxA/viewform','_blank')">Get access</button>
-        <button class="btn-light" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn more</button>
-      </div>
+    <h1><span class="hero-nowrap">College Baseball</span><br>Discipleship</h1>
+    <div class="hero-btns">
+      <button class="btn-dark" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSer6Y_nirchmU3vqpIHdEOqBjknmILjk7F3-Sp6btBwh1vVxA/viewform','_blank')">Get access</button>
+      <button class="btn-light" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn more</button>
+    </div>
+  </div>
+  <div class="hero-ticker" aria-hidden="true">
+    <div class="hero-ticker-track">
+      <span>Ephesians 4:1-6 &nbsp;&mdash;&nbsp; "As a prisoner for the Lord, then, I urge you to live a life worthy of the calling you have received. Be completely humble and gentle; be patient, bearing with one another in love. Make every effort to keep the unity of the Spirit through the bond of peace. There is one body and one Spirit, just as you were called to one hope when you were called; one Lord, one faith, one baptism; one God and Father of all, who is over all and through all and in all." &bull;</span>
+      <span>Ephesians 4:1-6 &nbsp;&mdash;&nbsp; "As a prisoner for the Lord, then, I urge you to live a life worthy of the calling you have received. Be completely humble and gentle; be patient, bearing with one another in love. Make every effort to keep the unity of the Spirit through the bond of peace. There is one body and one Spirit, just as you were called to one hope when you were called; one Lord, one faith, one baptism; one God and Father of all, who is over all and through all and in all." &bull;</span>
     </div>
   </div>
 </section>
@@ -485,19 +525,40 @@
     <div class="films-header" data-reveal>
       <span class="overline">Films</span>
     </div>
-    <div class="films-video" data-reveal style="transition-delay:0.1s">
-      <video id="films-video" src="films-home-plate.mp4" poster="films-home-plate-poster.jpg" muted autoplay loop playsinline></video>
-      <button class="films-mute-toggle" id="films-mute-toggle" type="button" aria-label="Unmute video" onclick="toggleFilmsMute()">
-        <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
-          <path d="M17 9l4 4M21 9l-4 4" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        <svg class="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none">
-          <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
-          <path d="M15.5 9.5a3.5 3.5 0 0 1 0 5" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M17.8 7.2a7 7 0 0 1 0 9.6" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-      </button>
+    <div class="films-grid">
+      <div class="films-video" data-reveal style="transition-delay:0.1s">
+        <video id="films-video" src="films-home-plate.mp4" poster="films-home-plate-poster.jpg" muted autoplay loop playsinline></video>
+        <button class="films-mute-toggle" id="films-mute-toggle" type="button" aria-label="Unmute video" onclick="toggleFilmsMute()">
+          <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
+            <path d="M17 9l4 4M21 9l-4 4" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <svg class="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
+            <path d="M15.5 9.5a3.5 3.5 0 0 1 0 5" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M17.8 7.2a7 7 0 0 1 0 9.6" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="films-video" data-reveal style="transition-delay:0.2s">
+        <video id="films-video-2" src="films-who-is-jesus.mp4" poster="films-who-is-jesus-poster.jpg" muted autoplay loop playsinline></video>
+        <button class="films-mute-toggle" id="films-mute-toggle-2" type="button" aria-label="Unmute video" onclick="toggleFilmsMute(2)">
+          <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
+            <path d="M17 9l4 4M21 9l-4 4" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <svg class="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
+            <path d="M15.5 9.5a3.5 3.5 0 0 1 0 5" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M17.8 7.2a7 7 0 0 1 0 9.6" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="films-video films-video-feature" data-reveal style="transition-delay:0.3s">
+        <video id="films-video-3" poster="films-jt-guerrero-poster.jpg" controls preload="none" playsinline>
+          <source src="films-jt-guerrero.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
   </div>
 </section>
@@ -585,12 +646,13 @@
   }, { passive: true });
 
   // ── Films mute toggle ──
-  const filmsVideo = document.getElementById('films-video');
-  const filmsMuteToggle = document.getElementById('films-mute-toggle');
-  function toggleFilmsMute() {
-    filmsVideo.muted = !filmsVideo.muted;
-    filmsMuteToggle.classList.toggle('is-unmuted', !filmsVideo.muted);
-    filmsMuteToggle.setAttribute('aria-label', filmsVideo.muted ? 'Unmute video' : 'Mute video');
+  function toggleFilmsMute(n) {
+    const suffix = n ? '-' + n : '';
+    const video = document.getElementById('films-video' + suffix);
+    const toggle = document.getElementById('films-mute-toggle' + suffix);
+    video.muted = !video.muted;
+    toggle.classList.toggle('is-unmuted', !video.muted);
+    toggle.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
   }
 
 </script>
