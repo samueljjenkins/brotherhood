@@ -350,26 +350,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
-      max-width: 980px;
+      gap: 1.25rem;
+      max-width: 1020px;
       margin: 0 auto;
     }
     .films-stage {
       position: relative;
-      width: min(640px, 100%);
+      width: min(680px, 100%);
       aspect-ratio: 4 / 3;
       overflow: hidden;
       flex-shrink: 1;
+      background: linear-gradient(180deg, #0e1a33, #16294f);
     }
     .films-slide {
       position: absolute; left: 50%; top: 50%;
-      width: 70%; aspect-ratio: 4 / 3;
-      border-radius: 16px;
+      width: 68%; aspect-ratio: 4 / 3;
       overflow: hidden;
       background: #000;
-      box-shadow: 0 24px 50px rgba(7,24,39,0.26);
+      box-shadow: 0 30px 60px rgba(4,10,24,0.45);
       transition: transform 0.5s cubic-bezier(.22,.8,.3,1), opacity 0.5s ease, filter 0.5s ease;
       transform: translate(-50%, -50%);
+    }
+    .films-slide::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      opacity: 0; transition: opacity 0.5s ease;
     }
     .films-slide video {
       display: block; width: 100%; height: 100%; object-fit: cover; background: #000;
@@ -378,47 +382,66 @@
       transform: translate(-50%, -50%) scale(1);
       opacity: 1; filter: none;
       z-index: 3; cursor: default;
+      box-shadow: 0 30px 70px rgba(4,10,24,0.55);
     }
     .films-slide.is-active video { object-fit: contain; }
     .films-slide.is-prev {
-      transform: translate(calc(-50% - 58%), -50%) scale(0.8);
-      opacity: 0.55; filter: brightness(0.7);
+      transform: translate(calc(-50% - 56%), -50%) scale(0.78);
+      opacity: 0.9; filter: brightness(0.5) saturate(0.75);
       z-index: 1; cursor: pointer;
+    }
+    .films-slide.is-prev::after {
+      opacity: 1;
+      background: linear-gradient(to left, transparent 45%, rgba(10,19,39,0.95) 100%);
     }
     .films-slide.is-next {
-      transform: translate(calc(-50% + 58%), -50%) scale(0.8);
-      opacity: 0.55; filter: brightness(0.7);
+      transform: translate(calc(-50% + 56%), -50%) scale(0.78);
+      opacity: 0.9; filter: brightness(0.5) saturate(0.75);
       z-index: 1; cursor: pointer;
     }
+    .films-slide.is-next::after {
+      opacity: 1;
+      background: linear-gradient(to right, transparent 45%, rgba(10,19,39,0.95) 100%);
+    }
+    .films-slide.is-prev:hover,
+    .films-slide.is-next:hover { filter: brightness(0.65) saturate(0.85); }
     .films-slide.is-prev video,
     .films-slide.is-next video { pointer-events: none; }
     .films-arrow {
       flex: 0 0 auto;
-      width: 46px; height: 46px; border-radius: 50%;
-      background: var(--white); border: 1px solid rgba(7,24,39,0.1);
-      box-shadow: 0 8px 20px rgba(7,24,39,0.12);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--navy); border: none;
+      box-shadow: 0 10px 22px rgba(18,33,63,0.25);
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
-    .films-arrow:hover { box-shadow: 0 10px 24px rgba(7,24,39,0.18); }
-    .films-arrow:active { transform: scale(0.94); }
+    .films-arrow:hover { background: #1b335c; transform: translateY(-2px); box-shadow: 0 14px 26px rgba(18,33,63,0.3); }
+    .films-arrow:active { transform: translateY(0) scale(0.94); }
     .films-arrow svg { display: block; }
+    .films-caption {
+      text-align: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--navy); letter-spacing: -0.01em;
+      margin-top: 1.1rem;
+    }
     .films-dots {
       display: flex; justify-content: center; gap: 0.5rem;
-      margin-top: 1.25rem;
+      margin-top: 0.6rem;
     }
     .films-dot {
       width: 8px; height: 8px; border-radius: 50%; padding: 0;
       background: var(--surface); border: none; cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
-    .films-dot.is-active { background: var(--navy); }
+    .films-dot.is-active { background: var(--navy); transform: scale(1.2); }
 
     @media (max-width: 700px) {
       .films-carousel { gap: 0.5rem; }
       .films-stage { aspect-ratio: 4 / 3.4; }
-      .films-slide { width: 82%; }
-      .films-slide.is-prev { transform: translate(calc(-50% - 48%), -50%) scale(0.78); }
-      .films-slide.is-next { transform: translate(calc(-50% + 48%), -50%) scale(0.78); }
+      .films-slide { width: 80%; }
+      .films-slide.is-prev { transform: translate(calc(-50% - 46%), -50%) scale(0.76); }
+      .films-slide.is-next { transform: translate(calc(-50% + 46%), -50%) scale(0.76); }
       .films-arrow { width: 38px; height: 38px; }
     }
 
@@ -574,7 +597,7 @@
     <div class="films-carousel" data-reveal>
       <button class="films-arrow films-arrow-prev" type="button" aria-label="Previous film" onclick="filmsNav(-1)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M15 6l-6 6 6 6" stroke="#12213f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 6l-6 6 6 6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
       <div class="films-stage">
@@ -596,10 +619,11 @@
       </div>
       <button class="films-arrow films-arrow-next" type="button" aria-label="Next film" onclick="filmsNav(1)">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-          <path d="M9 6l6 6-6 6" stroke="#12213f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 6l6 6-6 6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
     </div>
+    <p class="films-caption" id="films-caption">JT Guerrero</p>
     <div class="films-dots">
       <button class="films-dot is-active" type="button" data-film-dot aria-label="Film 1" onclick="filmsGoTo(0)"></button>
       <button class="films-dot" type="button" data-film-dot aria-label="Film 2" onclick="filmsGoTo(1)"></button>
@@ -693,6 +717,8 @@
   // ── Films carousel ──
   const filmSlides = document.querySelectorAll('[data-film-slide]');
   const filmDots = document.querySelectorAll('[data-film-dot]');
+  const filmCaption = document.getElementById('films-caption');
+  const filmTitles = ['JT Guerrero', 'Home Plate', 'Who Is Jesus?'];
   const filmCount = filmSlides.length;
   let filmIndex = 0;
   function filmsRender() {
@@ -708,6 +734,7 @@
       }
     });
     filmDots.forEach((dot, idx) => dot.classList.toggle('is-active', idx === filmIndex));
+    if (filmCaption) filmCaption.textContent = filmTitles[filmIndex] || '';
   }
   function filmsShow(i) {
     const current = filmSlides[filmIndex].querySelector('video');
