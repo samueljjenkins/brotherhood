@@ -346,35 +346,41 @@
 
     /* ── FILMS ────────────────────────────────── */
     .films-header { text-align: center; margin-bottom: 2rem; }
-    .films-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-    .films-video {
+    .films-carousel {
       position: relative;
-      width: min(480px, 100%);
-      flex: 1 1 320px;
+      width: min(640px, 100%);
+      margin: 0 auto;
       aspect-ratio: 4 / 3;
       overflow: hidden;
-      background: var(--surface);
+      background: #000;
     }
-    .films-video video {
-      display: block; width: 100%; height: 100%; object-fit: cover;
+    .films-slide {
+      position: absolute; inset: 0;
+      display: none;
     }
-    .films-mute-toggle {
-      position: absolute; top: 0.75rem; right: 0.75rem;
-      width: 34px; height: 34px; border-radius: 50%;
+    .films-slide.is-active { display: block; }
+    .films-slide video {
+      display: block; width: 100%; height: 100%; object-fit: contain; background: #000;
+    }
+    .films-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 50%;
       background: rgba(255,255,255,0.92); border: none;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
+      cursor: pointer; z-index: 2;
     }
-    .films-mute-toggle svg { display: block; }
-    .films-mute-toggle .icon-unmuted { display: none; }
-    .films-mute-toggle.is-unmuted .icon-muted { display: none; }
-    .films-mute-toggle.is-unmuted .icon-unmuted { display: block; }
-    .films-video-feature video { object-fit: contain; background: #000; }
+    .films-arrow-prev { left: 0.75rem; }
+    .films-arrow-next { right: 0.75rem; }
+    .films-arrow svg { display: block; }
+    .films-dots {
+      display: flex; justify-content: center; gap: 0.5rem;
+      margin-top: 1.1rem;
+    }
+    .films-dot {
+      width: 8px; height: 8px; border-radius: 50%; padding: 0;
+      background: var(--surface); border: none; cursor: pointer;
+    }
+    .films-dot.is-active { background: var(--navy); }
 
     /* ── LEARN MORE ───────────────────────────── */
     .learn-more-row {
@@ -525,40 +531,37 @@
     <div class="films-header" data-reveal>
       <span class="overline">Films</span>
     </div>
-    <div class="films-grid">
-      <div class="films-video" data-reveal style="transition-delay:0.1s">
-        <video id="films-video" src="films-home-plate.mp4" poster="films-home-plate-poster.jpg" muted autoplay loop playsinline></video>
-        <button class="films-mute-toggle" id="films-mute-toggle" type="button" aria-label="Unmute video" onclick="toggleFilmsMute()">
-          <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
-            <path d="M17 9l4 4M21 9l-4 4" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          <svg class="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
-            <path d="M15.5 9.5a3.5 3.5 0 0 1 0 5" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M17.8 7.2a7 7 0 0 1 0 9.6" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-      <div class="films-video" data-reveal style="transition-delay:0.2s">
-        <video id="films-video-2" src="films-who-is-jesus.mp4" poster="films-who-is-jesus-poster.jpg" muted autoplay loop playsinline></video>
-        <button class="films-mute-toggle" id="films-mute-toggle-2" type="button" aria-label="Unmute video" onclick="toggleFilmsMute(2)">
-          <svg class="icon-muted" width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
-            <path d="M17 9l4 4M21 9l-4 4" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          <svg class="icon-unmuted" width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="#12213f"/>
-            <path d="M15.5 9.5a3.5 3.5 0 0 1 0 5" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M17.8 7.2a7 7 0 0 1 0 9.6" stroke="#12213f" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-      <div class="films-video films-video-feature" data-reveal style="transition-delay:0.3s">
-        <video id="films-video-3" poster="films-jt-guerrero-poster.jpg" controls preload="none" playsinline>
+    <div class="films-carousel" data-reveal>
+      <div class="films-slide is-active" data-film-slide>
+        <video id="films-video-1" poster="films-jt-guerrero-poster.jpg" controls loop playsinline preload="metadata">
           <source src="films-jt-guerrero.mp4" type="video/mp4">
         </video>
       </div>
+      <div class="films-slide" data-film-slide>
+        <video id="films-video-2" poster="films-home-plate-poster.jpg" controls loop playsinline preload="metadata">
+          <source src="films-home-plate.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="films-slide" data-film-slide>
+        <video id="films-video-3" poster="films-who-is-jesus-poster.jpg" controls loop playsinline preload="metadata">
+          <source src="films-who-is-jesus.mp4" type="video/mp4">
+        </video>
+      </div>
+      <button class="films-arrow films-arrow-prev" type="button" aria-label="Previous film" onclick="filmsNav(-1)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M15 6l-6 6 6 6" stroke="#12213f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="films-arrow films-arrow-next" type="button" aria-label="Next film" onclick="filmsNav(1)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M9 6l6 6-6 6" stroke="#12213f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="films-dots">
+      <button class="films-dot is-active" type="button" data-film-dot aria-label="Film 1" onclick="filmsGoTo(0)"></button>
+      <button class="films-dot" type="button" data-film-dot aria-label="Film 2" onclick="filmsGoTo(1)"></button>
+      <button class="films-dot" type="button" data-film-dot aria-label="Film 3" onclick="filmsGoTo(2)"></button>
     </div>
   </div>
 </section>
@@ -645,15 +648,19 @@
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
-  // ── Films mute toggle ──
-  function toggleFilmsMute(n) {
-    const suffix = n ? '-' + n : '';
-    const video = document.getElementById('films-video' + suffix);
-    const toggle = document.getElementById('films-mute-toggle' + suffix);
-    video.muted = !video.muted;
-    toggle.classList.toggle('is-unmuted', !video.muted);
-    toggle.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+  // ── Films carousel ──
+  const filmSlides = document.querySelectorAll('[data-film-slide]');
+  const filmDots = document.querySelectorAll('[data-film-dot]');
+  let filmIndex = 0;
+  function filmsShow(i) {
+    const current = filmSlides[filmIndex].querySelector('video');
+    if (current) current.pause();
+    filmIndex = (i + filmSlides.length) % filmSlides.length;
+    filmSlides.forEach((slide, idx) => slide.classList.toggle('is-active', idx === filmIndex));
+    filmDots.forEach((dot, idx) => dot.classList.toggle('is-active', idx === filmIndex));
   }
+  function filmsNav(delta) { filmsShow(filmIndex + delta); }
+  function filmsGoTo(i) { filmsShow(i); }
 
 </script>
 </body>
